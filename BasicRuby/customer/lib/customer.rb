@@ -4,26 +4,24 @@ class Customer
 
   attr_reader :name, :account_no, :balance
 
-  def initialize (name)
-
-    @name = name.capitalize
-
+  def initialize(name)
+    @name = name
     @account_no = @@account_no += 1
-
     @balance = 1000
-
   end
 
   def deposit(amount)
-
     @balance += amount
-
   end
 
   def withdrawal(amount)
 
-    @balance -= amount
-
+    if amount > @balance
+      puts "Can not withdraw because there is not enough balance"
+    else
+      @balance -= amount
+    end
+    
   end
 
 end
