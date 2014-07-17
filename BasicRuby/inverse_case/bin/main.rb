@@ -1,5 +1,5 @@
-require_relative "../lib/inverse_case.rb"
+require_relative '../lib/string'
 
-puts "Gaurav Mahajan".to_s
+puts 'Gaurav Mahajan'.to_s
 
-puts "HeY tHeRe".to_s
+puts 'HeY tHeRe'.to_s
