@@ -1,14 +1,9 @@
 class String
 
-  def palindrome
+  def palindrome?
 
-    if self.reverse == self
-      puts "Palindrome"
-
-    else
-      puts "Not palindrome"
-
-    end
+    reverse == self
+      
   end
 
 end

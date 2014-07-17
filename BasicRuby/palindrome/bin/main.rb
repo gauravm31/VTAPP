@@ -1,7 +1,10 @@
 require_relative "../lib/string.rb"
 
-print "Enter the string:"
+while true
+  print "Enter the string:"
+  str = gets.chomp
+  break if str =~ /[qQ$]/
+  
+  str.palindrome? ? puts("It is a palindrome") : puts("It is not a palindrome.")
 
-str = gets.chomp
-
-str.palindrome if str =~ /[^qQ$]/
+end
