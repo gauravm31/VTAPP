@@ -1,7 +1,5 @@
 class Customer
-
   @@account_no = 0
-
   attr_reader :name, :account_no, :balance
 
   def initialize(name)
@@ -15,13 +13,7 @@ class Customer
   end
 
   def withdrawal(amount)
-
-    if amount > @balance
-      puts "Can not withdraw because there is not enough balance"
-    else
-      @balance -= amount
-    end
-    
+    amount > @balance ? puts('Not enough balance') : @balance -= amount
   end
 
 end
