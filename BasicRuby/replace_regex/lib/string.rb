@@ -1,4 +1,5 @@
 class String
+  
   VOWELS = /[aeiou]/i
 
   def replace_vowels
