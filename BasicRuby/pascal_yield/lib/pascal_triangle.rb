@@ -1,7 +1,6 @@
 class PascalTriangle
 
   def pascal(number)
-
     array = []
 
     for row in 0..number
