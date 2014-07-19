@@ -1,9 +1,9 @@
 class Array
 
-  def create_hash
+  def group_by_length
     hash = Hash.new { |hash, key| hash[key] = [] }
-    for index in 0...size
-      hash[self[index].to_s.length] << self[index]
+    for var in self
+      hash[var.to_s.length] << var
     end
 
     hash
