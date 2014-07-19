@@ -1,8 +1,8 @@
 class String
+  VOWELS = /[aeiou]/i
 
   def replace_vowels
-
-    gsub(/[aeiou]/i, '*')
+    gsub(VOWELS, '*')
 
   end
 
