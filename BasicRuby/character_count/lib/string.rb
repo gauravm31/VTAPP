@@ -1,10 +1,10 @@
 class String
 
-  def count_various_char
+  def count_chars_by_type
     count = Hash.new(0)
-    chomp.split(//).each do |c| 
+    chars.each do |character|
 
-      case c
+      case character
       when '0'..'9'
         count[:digits] += 1
       when 'a'..'z'
@@ -14,11 +14,8 @@ class String
       else
         count[:specials] += 1
       end
-
     end
 
     count
-
   end
-
 end
