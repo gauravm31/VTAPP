@@ -1,0 +1,3 @@
+class NameBlankError < Exception
+
+end
