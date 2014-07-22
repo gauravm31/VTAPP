@@ -1,11 +1,11 @@
 class String
 
-  def highlight!(pattern)
+  def highlight!(word)
     occurences = 0
-    str = gsub!(pattern) do |substitution|
-      occurences +=1
+    str = gsub!(/#{Regexp.quote(word)}/i) do |substitution|
+      occurences += 1
       "(#{substitution})"
-      end
-      occurences
+    end
+    occurences
   end
 end
