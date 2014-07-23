@@ -9,7 +9,7 @@ class Bike < Vehicle
     super(name, price)
   end
 
-  def show_content
+  def to_s
     "Bike #{name} costs #{price}rs and is available at #{dealer}."
   end
 end

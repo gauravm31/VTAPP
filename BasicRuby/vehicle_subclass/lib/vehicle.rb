@@ -5,6 +5,6 @@ class Vehicle
 
   def initialize(name, aprice)
     @name = name
-    price = aprice
+    @price = aprice
   end
 end
