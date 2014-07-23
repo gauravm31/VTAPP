@@ -1,4 +1,4 @@
-require_relative "../lib/time_sum"
+require_relative "../lib/times"
 
-timesum = TimeSum.new
-puts timesum.sum_of_times('23:23:23', '23:23:23', '23:23:23', '23:23:23')
+timesum = Times.new('23:23:23', '23:23:23', '23:23:23', '23:23:23')
+puts timesum.show_sum
