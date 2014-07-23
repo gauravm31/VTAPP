@@ -2,17 +2,16 @@ require "prime"
 
 class Fixnum
 
-  def primes_upto
-    primes = [2]
-    if self <= 1
-      puts "No prime numbers."
-    else
-      (1..self).step(2) { |number| primes << number if number.prime?}
-
-      primes
-
+  def primes_upto(limit)
+    primes = []
+    if self <= 2
+      primes << 2
     end
-
+    if (self % 2) == 0
+      ((self + 1)..limit).step(2) { |number| primes << number if number.prime? }
+    else
+      (self..limit).step(2) { |number| primes << number if number.prime? }
+    end
+    primes
   end
-
 end

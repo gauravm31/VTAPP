@@ -1,3 +1,3 @@
 require_relative "../lib/fixnum.rb"
 
-print 67.primes_upto
+print 1.primes_upto(10)
