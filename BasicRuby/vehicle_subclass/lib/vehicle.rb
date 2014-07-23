@@ -3,8 +3,12 @@ class Vehicle
   attr_reader :name
   attr_accessor :price
 
-  def initialize(name, aprice)
+  def initialize(name, price)
     @name = name
-    @price = aprice
+    @price = price
+  end
+
+  def to_s
+    "#{ name } costs #{ price }rs"
   end
 end

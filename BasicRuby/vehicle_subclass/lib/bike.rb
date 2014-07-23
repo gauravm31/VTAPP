@@ -10,6 +10,6 @@ class Bike < Vehicle
   end
 
   def to_s
-    "Bike #{name} costs #{price}rs and is available at #{dealer}."
+    "Bike #{ name } costs #{ price }rs and is available at #{ dealer }."
   end
 end
