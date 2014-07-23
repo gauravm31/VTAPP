@@ -1,8 +1,7 @@
-require_relative "../lib/time_sum.rb"
+require_relative '../lib/time'
 
-puts "Enter 1st time(hh:mm:ss):"
+puts 'Enter 1st time(hh:mm:ss):'
 time1 = gets
-puts "Enter 2nd time(hh:mm:ss):"
+puts 'Enter 2nd time(hh:mm:ss):'
 time2 = gets
-timesum = Times.new(time1, time2)
-puts timesum.show_sum
+puts Time.sum(time1, time2)
