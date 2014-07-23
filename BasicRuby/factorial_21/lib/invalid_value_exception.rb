@@ -1,0 +1,2 @@
+class InvalidValueException < StandardError
+end
