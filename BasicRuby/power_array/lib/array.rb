@@ -1,8 +1,7 @@
 class Array
 
-  def power(x)
-    collect { |element| element = element ** x }
-
+  def power(exponent)
+    collect { |element| element ** exponent }
   end
 
 end
