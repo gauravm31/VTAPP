@@ -1,19 +1,22 @@
-require_relative "name_blank_error"
+require_relative 'name_invalid_error'
 
 class Name
+  attr_reader :first_name, :last_name
 
-  attr_accessor :first_name, :last_name
-
-  def initialize(f_name, l_name)
+  def initialize(first_name, last_name)
     begin
-      raise NameBlankError, "First or last name can't be empty." if (f_name.empty? || l_name.empty?)
-      raise RuntimeError, "First letter of first name is not capital." if f_name[0] !~ /[A-Z]/
-      self.first_name = f_name
-      self.last_name = l_name
-    rescue NameBlankError => name_error
+      if (first_name.nil? || first_name.empty?)
+        raise NameInvalidError, 'First name can not be blank.'
+      elsif (last_name.nil? || last_name.empty?)
+        raise NameInvalidError, 'Second name can not be blank.'
+      elsif first_name[0] !~ /[A-Z]/
+        raise NameInvalidError, 'First letter of first name is not capital.'
+      else
+        @first_name = first_name
+        @last_name = last_name
+      end
+    rescue NameInvalidError => name_error
       puts name_error.message
-    rescue RuntimeError => arg_error
-      puts arg_error.message
     end
   end
 end

@@ -1,0 +1,2 @@
+class NameInvalidError < Exception
+end
