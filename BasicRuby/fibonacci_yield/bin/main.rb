@@ -1,3 +1,4 @@
 require_relative "../lib/fibonacci.rb"
 
-Fibonacci.build {|number| puts number}
+puts "Enter the limit:"
+Fibonacci.build(gets.to_i) {|number| puts number}
