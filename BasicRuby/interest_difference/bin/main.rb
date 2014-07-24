@@ -10,4 +10,4 @@ interest = Interest.new do |obj|
   obj.rate = 10
 end
 
-puts "Difference is #{ interest.difference_in_interest }"
+puts "Difference is #{ interest.difference }"
