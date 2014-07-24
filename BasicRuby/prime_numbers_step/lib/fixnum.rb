@@ -4,14 +4,9 @@ class Fixnum
 
   def primes_upto(limit)
     primes = []
-    if self <= 2
-      primes << 2
-    end
-    if (self % 2) == 0
-      ((self + 1)..limit).step(2) { |number| primes << number if number.prime? }
-    else
-      (self..limit).step(2) { |number| primes << number if number.prime? }
-    end
+    primes << 2 if self <= 2
+    start = self.even? ? self + 1 : self
+    (start..limit).step(2) { |number| primes << number if number.prime? }
     primes
   end
 
