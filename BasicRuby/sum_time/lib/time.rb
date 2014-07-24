@@ -1,4 +1,4 @@
-require "time"
+require 'time'
 
 class Time
 
@@ -71,4 +71,5 @@ class Time
       end
     end
   end
+
 end

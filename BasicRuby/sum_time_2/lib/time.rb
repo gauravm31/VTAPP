@@ -1,4 +1,4 @@
-require "time"
+require 'time'
 
 class Time
 
@@ -67,4 +67,5 @@ class Time
       "#{ times[$check] } is not a valid time"
     end
   end
+  
 end
