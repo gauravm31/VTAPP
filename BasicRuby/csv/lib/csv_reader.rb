@@ -8,7 +8,7 @@ class CsvReader
 
   def read_csv
     CSV.foreach('sample.txt', headers: true, col_sep: ', ') do |row|
-      @employees[row['Designation']] << Employee.new(row['Name'], row['EmpId'], row['Designation'])
+      @employees[row['Designation'].to_sym] << Employee.new(row['Name'], row['EmpId'], row['Designation'])
     end
   end
 
@@ -16,11 +16,10 @@ class CsvReader
     File.open('output.txt', 'w') do |file|
       @employees.each do |key, value|
         file.puts "#{ key }s"
-        value.each do |employee|
-          file.puts "#{ employee.name } (EmpId: #{ employee.emp_id })"
-        end
+        file.puts value
         file.puts
       end
     end
   end
+  
 end
