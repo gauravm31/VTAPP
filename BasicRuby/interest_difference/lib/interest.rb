@@ -1,9 +1,8 @@
 class Interest
-  attr_accessor :principal, :time
+  attr_accessor :principal, :time, :rate
 
   def initialize
     yield self
-    @rate = 10
   end
 
   def difference_in_interest

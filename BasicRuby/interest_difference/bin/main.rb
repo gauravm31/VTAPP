@@ -7,6 +7,7 @@ time = gets.to_i
 interest = Interest.new do |obj|
   obj.principal = principal
   obj.time = time
+  obj.rate = 10
 end
 
 puts "Difference is #{ interest.difference_in_interest }"
