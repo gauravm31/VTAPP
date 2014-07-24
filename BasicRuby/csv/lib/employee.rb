@@ -7,4 +7,5 @@ class Employee
     @emp_id = emp_id
     @designation = designation
   end
+  
 end

@@ -25,4 +25,5 @@ class Customer
       "Balance = #{ @balance -= amount }"
     end
   end
+
 end

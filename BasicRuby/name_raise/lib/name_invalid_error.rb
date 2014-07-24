@@ -1,2 +1,2 @@
-class NameInvalidError < Exception
+class NameInvalidError < StandardError
 end

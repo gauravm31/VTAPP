@@ -1,4 +1,4 @@
-require_relative '../lib/customer.rb'
+require_relative '../lib/customer'
 
 customer1 = Customer.new('Gaurav')
 customer2 = Customer.new('Dilpreet')

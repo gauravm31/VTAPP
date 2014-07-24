@@ -14,4 +14,5 @@ class Fixnum
     end
     primes
   end
+
 end

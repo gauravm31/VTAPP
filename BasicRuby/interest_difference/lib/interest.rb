@@ -1,5 +1,4 @@
 class Interest
-
   attr_accessor :principal, :time
 
   def initialize
