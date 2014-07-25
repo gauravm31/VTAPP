@@ -1,6 +1,6 @@
 class Pascal
 
-  def Pascal.build(number)
+  def self.build(number)
     array = []
     0.upto(number) do |row|
       nested_array = []
