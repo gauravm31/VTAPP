@@ -5,5 +5,4 @@ cart.add do |message|
   print message
   gets.chomp
 end
-
-puts "Grand total: #{ cart.show_total }"
+cart.show_total

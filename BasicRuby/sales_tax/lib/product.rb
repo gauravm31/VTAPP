@@ -8,18 +8,22 @@ class Product
     @price = price.to_i
   end
 
-  def calculate_sales_tax
-    tax = 0
-    if @exempt != 'y'
-      tax += @price / 10.0
-    end
-    if @import == 'y'
-      tax += @price / 20.0
-    end
-    tax.round(3)
+  INPUT = { :one => 'y', :two => 'n' }
+
+  def sales_tax
+    @exempt == INPUT[:one] ? 0 : 0.1 * @price
+  end
+
+  def import_tax
+    @import == INPUT[:one] ? 0.05 * @price : 0
+  end
+
+  def gross_price
+    (price + sales_tax + import_tax).round(2)
   end
 
   def to_s
-    "#{ @name }'s price: #{ price }"
+    "#{ @name }  #{ price }  #{ sales_tax }  #{ import_tax }  #{ gross_price }"
   end
+  
 end
