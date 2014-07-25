@@ -41,8 +41,8 @@ class Time
     @@days = 0
     if valid?(time1)
       if valid?(time2)
-        time1 = Time.parse(time1)
-        time2 = Time.parse(time2)
+        time1 = parse(time1)
+        time2 = parse(time2)
         @@sum_seconds = time1.sec + time2.sec
         @@sum_minutes = time1.min + time2.min
         @@sum_hours = time1.hour + time2.hour

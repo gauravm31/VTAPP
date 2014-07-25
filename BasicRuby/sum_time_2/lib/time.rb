@@ -45,7 +45,7 @@ class Time
     @@check = -1
     times.each do |time|
       if valid?(time)
-        time = Time.parse(time)
+        time = parse(time)
         @@sum_seconds += time.sec
         @@sum_minutes += time.min
         @@sum_hours += time.hour
