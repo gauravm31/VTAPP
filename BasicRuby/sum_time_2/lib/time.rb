@@ -2,70 +2,59 @@ require 'time'
 
 class Time
 
+  REGEXP = /^([0-1]?\d|2[0-3]):([0-5]?\d):([0-5]?\d)$/
 
-  REGEXP = /(?<hour>^\d\d?):(?<min>\d\d?):(?<sec>\d\d?)/
-  def self.valid?(times)
-    times.each_with_index do |element, index|
-      if REGEXP !~ element
-        $check = index
-        false
-        break
-      else
-        /(?<hour>^\d\d?):(?<min>\d\d?):(?<sec>\d\d?)/ =~ element
-        if (hour.to_i >= 24 || min.to_i >= 60 || sec.to_i >= 60)
-          $check = index
-          false
-          break
-        else
-          true
-        end
-      end
-    end
+  def self.valid?(time)
+    time =~ REGEXP
   end
 
   def self.normalise
-    if $sum_seconds >= 60
-      $sum_seconds -= 60
-      $sum_minutes +=1
+    if @@sum_seconds >= 60
+      @@sum_seconds -= 60
+      @@sum_minutes +=1
     end
 
-    if $sum_minutes >= 60
-      $sum_minutes -= 60
-      $sum_hours +=1
+    if @@sum_minutes >= 60
+      @@sum_minutes -= 60
+      @@sum_hours +=1
     end
 
-    if $sum_hours >= 24
-      $sum_hours -= 24
-      $days += 1
+    if @@sum_hours >= 24
+      @@sum_hours -= 24
+      @@days += 1
     end
   end
 
-  def self.sum_of_times
-    $time.each do |time|
-      $sum_seconds += time.sec
-      $sum_minutes += time.min
-      $sum_hours += time.hour
-      normalise
+  def self.show_error(time)
+    "#{ time } is not valid."
+  end
+
+  def self.show_sum
+    if @@days == 1
+      "1 day and #{ @@sum_hours }:#{ @@sum_minutes }:#{ @@sum_seconds }"
+    elsif @@days > 1
+      "#{ @@days } days and #{ @@sum_hours }:#{ @@sum_minutes }:#{ @@sum_seconds }"
+    else
+      "#{ @@sum_hours }:#{ @@sum_minutes }:#{ @@sum_seconds }"
     end
   end
 
   def self.sum(*times)
-    if valid?(times)
-      $time = times.collect { |time| Time.parse(time) }
-      $sum_seconds = $sum_minutes = $sum_hours = 0
-      $days = 0
-      $check = -1
-      sum_of_times
-      if $days == 1
-        "1 day and #{ $sum_hours }:#{ $sum_minutes }:#{ $sum_seconds }"
-      elsif $days > 1
-        "#{ $days } days and #{ $sum_hours }:#{ $sum_minutes }:#{ $sum_seconds }"
+    @@sum_seconds = @@sum_minutes = @@sum_hours = 0
+    @@days = 0
+    @@check = -1
+    times.each do |time|
+      if valid?(time)
+        time = Time.parse(time)
+        @@sum_seconds += time.sec
+        @@sum_minutes += time.min
+        @@sum_hours += time.hour
+        normalise
       else
-        "#{ $sum_hours }:#{ $sum_minutes }:#{ $sum_seconds }"
+        return show_error(time)
       end
-    else
-      "#{ times[$check] } is not a valid time"
     end
+    show_sum
   end
-  
+
 end
