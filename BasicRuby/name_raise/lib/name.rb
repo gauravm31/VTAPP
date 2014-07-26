@@ -2,7 +2,7 @@ require_relative 'invalid_name_error'
 
 class Name
   attr_reader :first_name, :last_name
-  CAPITALS = /[A-Z]/
+  CAPITAL_ALPHABETS_REGEX = /[A-Z]/
 
   def blank?(string)
     string.nil? || string.empty?
@@ -13,7 +13,7 @@ class Name
       raise InvalidNameError.new('First name can not be empty.')
     elsif blank?(last_name)
       raise InvalidNameError.new('Last name can not be empty.')
-    elsif first_name[0] !~ CAPITALS
+    elsif first_name[0] !~ CAPITAL_ALPHABETS_REGEX
       raise InvalidNameError.new('First letter of first name must be capital.')
     else
       @first_name = first_name
