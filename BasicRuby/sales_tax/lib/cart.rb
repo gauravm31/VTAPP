@@ -2,7 +2,7 @@ require_relative 'product'
 
 class Cart
 
-  USER_INPUT = Product::INPUT.values.join("/")
+  USER_INPUT = Product::YES_OR_NO.values.join("/")
 
   def initialize
     @products = []
@@ -10,21 +10,25 @@ class Cart
 
   def add
     begin
-      name = yield 'Name of the product: '
-      import = yield "Product is imported?(#{ USER_INPUT }): "
-      exempt = yield "Product is exempted from sales tax?(#{ USER_INPUT }): "
-      price = (yield 'Price: ').to_i
-      @products << Product.new(name, import, exempt, price)
-    end while (yield("Do you want to add more items to your list?(#{ USER_INPUT }): ") == 'y')
+      product = Product.new
+      product.name = yield 'Name of the product: '
+      product.import = yield "Is product imported?(#{ USER_INPUT }): "
+      product.exempt = yield "Is product exempted from sales tax?(#{ USER_INPUT }): "
+      product.price = (yield 'Price: ').to_i
+      @products << product
+    end while (yield("Do you want to add more items to your list?(#{ USER_INPUT }): ") == Product::YES_OR_NO[:yes])
   end
 
   def show_total
-    total_price = (@products.map { |product| product.price }).inject(:+)
-    total_sales_tax = (@products.map { |product| product.sales_tax }).inject(:+)
-    total_import_tax = (@products.map { |product| product.import_tax }).inject(:+)
-    total_gross_price = ((@products.map { |product| product.gross_price }).inject(:+)).round
+    total = @products.inject(Hash.new(0)) do |summation, product|
+      summation[:price] += product.price
+      summation[:sales_tax] += product.sales_tax
+      summation[:import_tax] += product.import_tax
+      summation[:gross_price] += product.gross_price
+      summation
+    end
     @products.each { |product| puts product }
-    puts "total  #{ total_price }  #{ total_sales_tax }  #{ total_import_tax } #{ total_gross_price }"
+    puts "total  #{ total[:price] }  #{ total[:sales_tax] }  #{ total[:import_tax] } #{ total[:gross_price].round }"
   end
 
 end

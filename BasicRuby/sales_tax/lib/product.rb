@@ -1,21 +1,15 @@
 class Product
-  attr_reader :price
+  attr_accessor :price
+  attr_writer :name, :exempt, :import
 
-  def initialize(name, import, exempt, price)
-    @name = name
-    @import = import
-    @exempt = exempt
-    @price = price.to_i
-  end
-
-  INPUT = { :one => 'y', :two => 'n' }
+  YES_OR_NO = { :yes => 'y', :no => 'n' }
 
   def sales_tax
-    @exempt == INPUT[:one] ? 0 : 0.1 * @price
+    (@exempt == YES_OR_NO[:yes] ? 0 : 0.1 * @price).round(2)
   end
 
   def import_tax
-    @import == INPUT[:one] ? 0.05 * @price : 0
+    (@import == YES_OR_NO[:yes] ? 0.05 * @price : 0).round(2)
   end
 
   def gross_price
