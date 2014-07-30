@@ -2,7 +2,7 @@ class Product
   attr_accessor :price
   attr_writer :name, :exempt, :import
 
-  YES_OR_NO = { :yes => 'y', :no => 'n' }
+  PROMPt_VALUES = { :yes => 'y', :no => 'n' }
 
   def sales_tax
     (@exempt == YES_OR_NO[:yes] ? 0 : 0.1 * @price).round(2)

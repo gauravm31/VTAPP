@@ -25,9 +25,9 @@ class Cart
       summation[:sales_tax] += product.sales_tax
       summation[:import_tax] += product.import_tax
       summation[:gross_price] += product.gross_price
+      puts product
       summation
     end
-    @products.each { |product| puts product }
     puts "total  #{ total[:price] }  #{ total[:sales_tax] }  #{ total[:import_tax] } #{ total[:gross_price].round }"
   end
 
