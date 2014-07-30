@@ -2,14 +2,14 @@ class Product
   attr_accessor :price
   attr_writer :name, :exempt, :import
 
-  PROMPt_VALUES = { :yes => 'y', :no => 'n' }
+  PROMPT_VALUES = { :yes => 'y', :no => 'n' }
 
   def sales_tax
-    (@exempt == YES_OR_NO[:yes] ? 0 : 0.1 * @price).round(2)
+    (@exempt == PROMPT_VALUES[:yes] ? 0 : 0.1 * @price).round(2)
   end
 
   def import_tax
-    (@import == YES_OR_NO[:yes] ? 0.05 * @price : 0).round(2)
+    (@import == PROMPT_VALUES[:yes] ? 0.05 * @price : 0).round(2)
   end
 
   def gross_price

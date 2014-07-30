@@ -2,7 +2,7 @@ require_relative 'product'
 
 class Cart
 
-  USER_INPUT = Product::YES_OR_NO.values.join("/")
+  USER_INPUT = Product::PROMPT_VALUES.values.join("/")
 
   def initialize
     @products = []
@@ -16,7 +16,7 @@ class Cart
       product.exempt = yield "Is product exempted from sales tax?(#{ USER_INPUT }): "
       product.price = (yield 'Price: ').to_i
       @products << product
-    end while (yield("Do you want to add more items to your list?(#{ USER_INPUT }): ") == Product::YES_OR_NO[:yes])
+    end while (yield("Do you want to add more items to your list?(#{ USER_INPUT }): ") == Product::PROMPT_VALUES[:yes])
   end
 
   def show_total
