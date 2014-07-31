@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <form action = "" width = "600px">
+    <table width = "600px">
+      <tr>
+        <th>
+          <h1>HTML form exercise</h1>
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <font color = "red">Please note:</font> This example demonstate how HTML forms can be used.
+          Submit button should submit the button and reset button should reset the form(revert the changes in form fields).
+          The form layout should be same as below.
+        </td>
+      </tr>
+    </table><br>
+    <b>Contact form</b><br>
+    <table>
+      <tr>
+        <td>  
+          Your name<sup>*</sup>:
+        </td>
+        <td>
+        <input type = "text" name = "name1">
+        </td>
+      </tr>
+      <tr>
+        <td>  
+          E-mail<sup>*</sup>: 
+        </td>
+        <td>
+        <input type = "text" name = "e_mail">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Phone number: 
+        </td>
+        <td>
+        <input type = "text" name = "phone_number">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Website<sup>*</sup>: 
+        </td>
+        <td>
+        <input type = "text" name = "website" value = "http://" size = "30">
+        </td>
+      </tr>
+    </table>
+    <br>
+    Comments<sup>*</sup>:<br>
+    <textarea rows = "7" cols = "40"></textarea><br>
+    <br>
+    <b>Text field</b><br>
+    Your name:<input type = "text" name = "name2"><br>
+    <br>
+    <b>Password field</b><br>
+    Password:<input type = "password" name = "password"><br>
+    <br>
+    <b>Radio buttons</b><br>
+    Do you like pizza?<br>
+    <input type = "radio" name = "answer" value = "yes">Yes<br>
+    <input type = "radio" name = "answer" value = "no">No<br>
+    <input type = "radio" name = "answer" value = "maybe">Maybe<br>
+    <input type = "radio" name = "answer" value = "never_tried">Never tried<br>
+    <br>
+    <b>Check Box</b><br>
+    <input type = "checkbox" name = "like" value = "yes">Check this box if you like our service<br>
+    <br>
+    <b>Text area</b><br>
+    Anything you would like to say?<br>
+    <textarea rows = "5" cols = "40"></textarea><br>
+    <br>
+    <b>I Like</b><br>
+    <select multiple name = "likes">
+      <option value = "mushrooms">mushrooms</option>
+      <option value = "green_peppers">green peppers</option>
+      <option value = "onions">onions</option>
+      <option value = "tomatoes">tomatoes</option>
+      <option value = "olives">olives</option>    
+    </select><br>
+    <br>
+    <b>Menu</b><br>
+    Your favorite color:<br>
+    <select name = "fav_color">
+      <option value = "black">black</option>
+      <option value = "blue">blue</option>
+      <option value = "green">green</option>
+      <option value = "red" selected>red</option>
+      <option value = "white">white</option>
+      <option value = "yellow">yellow</option>
+    </select><br>
+    <br>
+    <b>Attach file</b>
+    <input type = "file" name = "uploaded_file"><br>
+    <br>
+    <b>Buttons</b><br>
+    <input type = "submit" value = "submit">
+    <input type = "reset" value = "reset">
+  </form>
+</html>
