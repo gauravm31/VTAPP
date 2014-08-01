@@ -1,14 +1,14 @@
 class Pascal
 
   def self.build(number)
-    array = []
-    0.upto(number) do |row|
-      nested_array = [1]
-      1.upto(row) do |column|
-        nested_array[column] = array[column - 1] + (array[column] || 0)
+    previous_row = []
+    0.upto(number) do |row_number|
+      row = [1]
+      1.upto(row_number) do |column_number|
+        row[column_number] = previous_row[column_number - 1] + (previous_row[column_number] || 0)
       end
-      yield(nested_array)
-      array = nested_array
+      yield(row)
+      previous_row = row
     end
   end
 
