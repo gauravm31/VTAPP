@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
   <form action = "" width = "600px">
-    <table width = "600px">
+    <table width = "600px" bgcolor = "#f4f4f4" align = "center">
       <tr>
-        <th>
+        <th colspan = "2">
           <h1>HTML form exercise</h1>
         </th>
       </tr>
       <tr>
-        <td>
-          <font color = "red">Please note:</font> This example demonstate how HTML forms can be used.
+        <td colspan = "2">
+          <font color = "red">Please note:</font> <span>This example demonstate how HTML forms can be used.
           Submit button should submit the button and reset button should reset the form(revert the changes in form fields).
-          The form layout should be same as below.
+          The form layout should be same as below.</span>
         </td>
       </tr>
-    </table><br>
-    <b>Contact form</b><br>
-    <table>
+        <td colspan = "2">
+        <b>Contact form</b>
+        </td>
       <tr>
-        <td>  
-          Your name<sup>*</sup>:
+        <td>
+          Your name*:
         </td>
         <td>
         <input type = "text" name = "name1">
@@ -27,7 +27,7 @@
       </tr>
       <tr>
         <td>  
-          E-mail<sup>*</sup>: 
+          E-mail*: 
         </td>
         <td>
         <input type = "text" name = "e_mail">
@@ -43,62 +43,153 @@
       </tr>
       <tr>
         <td>
-          Website<sup>*</sup>: 
+          Website*: 
         </td>
         <td>
         <input type = "text" name = "website" value = "http://" size = "30">
         </td>
       </tr>
+      <tr>
+        <td colspan = "2">
+          <br>Comments*:
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <textarea rows = "7" cols = "40"></textarea><br>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <b>Text field</b>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          Your name:<input type = "text" name = "name2"><br>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <b>Password field</b><br>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          Password:<input type = "password" name = "password"><br>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <b>Radio buttons</b>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          Do you like pizza?
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <input type = "radio" name = "answer" value = "yes">Yes<br>
+          <input type = "radio" name = "answer" value = "no">No<br>
+          <input type = "radio" name = "answer" value = "maybe">Maybe<br>
+          <input type = "radio" name = "answer" value = "never_tried">Never tried<br>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <b>Check Box</b><br>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <input type = "checkbox" name = "like" value = "yes">Check this box if you like our service<br>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <b>Text area</b>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          Anything you would like to say?
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <textarea rows = "5" cols = "40"></textarea><br>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <b>I Like</b>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <select multiple name = "likes">
+            <option value = "mushrooms">mushrooms</option>
+            <option value = "green_peppers">green peppers</option>
+            <option value = "onions">onions</option>
+            <option value = "tomatoes">tomatoes</option>
+            <option value = "olives">olives</option>    
+          </select><br>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <b>Menu</b>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          Your favorite color:
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <select name = "fav_color">
+            <option value = "black">black</option>
+            <option value = "blue">blue</option>
+            <option value = "green">green</option>
+            <option value = "red" selected>red</option>
+            <option value = "white">white</option>
+            <option value = "yellow">yellow</option>
+          </select><br>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <b>Attach file</b>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <input type = "file" name = "uploaded_file"><br>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <b>Buttons</b>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "2">
+          <input type = "submit" value = "submit">
+          <input type = "reset" value = "reset">
+        </td>
+      </tr>
     </table>
-    <br>
-    Comments<sup>*</sup>:<br>
-    <textarea rows = "7" cols = "40"></textarea><br>
-    <br>
-    <b>Text field</b><br>
-    Your name:<input type = "text" name = "name2"><br>
-    <br>
-    <b>Password field</b><br>
-    Password:<input type = "password" name = "password"><br>
-    <br>
-    <b>Radio buttons</b><br>
-    Do you like pizza?<br>
-    <input type = "radio" name = "answer" value = "yes">Yes<br>
-    <input type = "radio" name = "answer" value = "no">No<br>
-    <input type = "radio" name = "answer" value = "maybe">Maybe<br>
-    <input type = "radio" name = "answer" value = "never_tried">Never tried<br>
-    <br>
-    <b>Check Box</b><br>
-    <input type = "checkbox" name = "like" value = "yes">Check this box if you like our service<br>
-    <br>
-    <b>Text area</b><br>
-    Anything you would like to say?<br>
-    <textarea rows = "5" cols = "40"></textarea><br>
-    <br>
-    <b>I Like</b><br>
-    <select multiple name = "likes">
-      <option value = "mushrooms">mushrooms</option>
-      <option value = "green_peppers">green peppers</option>
-      <option value = "onions">onions</option>
-      <option value = "tomatoes">tomatoes</option>
-      <option value = "olives">olives</option>    
-    </select><br>
-    <br>
-    <b>Menu</b><br>
-    Your favorite color:<br>
-    <select name = "fav_color">
-      <option value = "black">black</option>
-      <option value = "blue">blue</option>
-      <option value = "green">green</option>
-      <option value = "red" selected>red</option>
-      <option value = "white">white</option>
-      <option value = "yellow">yellow</option>
-    </select><br>
-    <br>
-    <b>Attach file</b>
-    <input type = "file" name = "uploaded_file"><br>
-    <br>
-    <b>Buttons</b><br>
-    <input type = "submit" value = "submit">
-    <input type = "reset" value = "reset">
   </form>
 </html>
