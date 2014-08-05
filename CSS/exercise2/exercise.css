@@ -3,6 +3,11 @@ body {
   margin: 0px;
 }
 
+#main {
+  margin: 0px auto;
+  width: 1000px;
+}
+
 #header {
   background-color: #b2e7ff;
   font: 24px tahoma;
@@ -27,13 +32,18 @@ body {
 }
 
 #leftsection > ul {
-  font-size: 14px;
-  padding: 20px 0px;
-  color: white;
+  padding-left: 15px;
 }
 
 #leftsection > ul > li {
-  padding-top: 20px;
+  color: white;
+  padding: 10px 0px;
+}
+
+#leftsection > ul > li > a {
+  text-decoration: none;
+  font-size: 14px;
+  color: white;
 }
 
 #leftsection > p {
