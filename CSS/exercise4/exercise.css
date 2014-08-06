@@ -1,0 +1,131 @@
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+#container {
+  margin: 0px auto;
+  width: 1000px;
+}
+
+#top {
+  height: auto;
+}
+
+#top > h3 {
+  display: inline;
+  padding-right: 18px;
+  padding-left: 100px;
+  border-right: 1px solid #eeeeee;
+}
+
+#top > p {
+  display: inline;
+  font-size: 10px;
+  padding-left: 15px;
+}
+
+#top > img {
+  float: right;
+  position: relative;
+  left: -20px;
+}
+
+#img > img {
+  position: relative;
+  top: 10px;
+  width: 100%;
+}
+
+#heading1 {
+  text-align: center;
+  background-color: white;
+  font-size: 12px;
+  color: #888888;
+  width: 110px;
+  margin-left: auto;
+  margin-right:auto;
+}
+
+hr#first {
+  border-top: 1px solid #eeeeee;
+  width: 200px;
+  margin: 0px;
+  position: absolute;
+  top: 359px;
+  left: 550px;
+  z-index: -1;
+}
+
+#container > #img_container {
+  width: 500px;
+  margin: 0px auto;
+  height: auto;
+}
+
+div.img {
+  margin: 10px 10px;
+  padding: 5px;
+  border: 1px solid #eeeeee;
+  height: auto;
+  width: auto;
+  float: left;
+  text-align: center;
+}
+
+div.img img {
+  display: inline;
+  margin: 5px;
+  width: 70px;
+  border: 1px solid #ffffff;
+}
+
+div.desc {
+  text-align: center;
+  font-size: 8px;
+  color: #cccccc;
+  width: 120px;
+  margin: 5px;
+}
+
+div.desc > div {
+  color: #666666;
+  font-weight: bold;
+}
+
+#heading2 {
+  clear: both;
+  text-align: center;
+  background-color: white;
+  padding-top: 10px;
+  font-size: 12px;
+  color: #888888;
+  width: 120px;
+  margin-left: auto;
+  margin-right:auto;
+}
+
+hr#second {
+  border-top: 1px solid #eeeeee;
+  width: 200px;
+  margin: 0px;
+  position: absolute;
+  top: 563px;
+  left: 550px;
+  z-index: -1;
+}
+
+div#brands {
+  width: 500px;
+  height: auto;
+  clear: both;
+  margin: 0px auto;
+}
+
+img.brand {
+  margin: 10px 10px;
+  border: 1px solid #eeeeee;
+  height: 50px;
+  width: 75px;
+  float: left;
+}
