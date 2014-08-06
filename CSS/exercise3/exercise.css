@@ -1,0 +1,121 @@
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+#container {
+  width: 1000px;
+}
+
+#header {
+  display: table;
+  border-bottom: 2px solid #db2927;
+  height: 90px;
+  width: 100%;
+}
+
+#header > #image {
+  display: table-cell;
+  width: 70%;
+}
+
+#header > #image > img {
+  position: relative;
+  left : 20px;
+  top : 12px;
+  width: 200px;
+  height: 70px;
+}
+
+#header > pre {
+  display: table-cell;
+  position: relative;
+  top: 10px;
+  width: 28%;
+  font: 13px tahoma;
+  color: black;
+}
+
+#blue {
+  color: #045198;
+}
+
+h2#heading {
+  padding-top: 10px;
+  position: relative;
+  left: 224px;
+  font: 18px tahoma;
+  color: #2c286d;
+}
+
+#form1 {
+  font: 13px tahoma;
+  width: 100%;
+  color: #6f6f6f;
+}
+
+form {
+  display: table;
+  margin: 0px auto;
+  width: 500px;
+  background-color: #ececec;
+  border: 1px solid #bcbcbc;
+  padding: 20px 25px;
+}
+
+div#row {
+  display: table-row;
+}
+
+label {
+  display: table-cell;
+  width: auto;
+  text-align: right;
+  font: 14px tahoma;
+  color: black;
+  padding-right: 20px;
+}
+
+label[for = "address"] {
+  position: relative;
+  top: -130px;
+}
+
+input {
+  display: table-cell;
+  width: 358px;
+  height: 23px;
+  background-color: white;
+  border: 1px solid #b9b9b9;
+  padding: 0px;
+  margin-bottom: 10px;
+}
+
+input[type = "radio"] {
+  width: auto;
+  height: auto;
+}
+
+select {
+  width: 100px;
+  margin-right: 10px;
+}
+
+textarea {
+  width: 360px;
+  height: 135px;
+  background-color: white;
+  border: 1px solid #b9b9b9;
+  margin-bottom: 10px;
+}
+
+input[type = "submit"] {
+  width: 130px;
+  height: 32px;
+  background-color: #dc2927;
+  border: 1px solid #a10200;
+  text-align: center;
+  font: 14px tahoma;
+  color: white;
+  margin-bottom: 0px;
+}
