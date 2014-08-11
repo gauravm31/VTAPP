@@ -29,8 +29,7 @@ body {
 
 #header > pre {
   display: table-cell;
-  position: relative;
-  top: 10px;
+  vertical-align: bottom;
   width: 28%;
   font: 13px tahoma;
   color: black;
@@ -40,18 +39,17 @@ body {
   color: #045198;
 }
 
-h2#heading {
-  padding-top: 10px;
-  position: relative;
-  left: 224px;
-  font: 18px tahoma;
-  color: #2c286d;
+
+#form_container {
+  font: 13px tahoma;
+  width: 500px;
+  margin: 0px auto;
+  color: #6f6f6f;
 }
 
-#form1 {
-  font: 13px tahoma;
-  width: 100%;
-  color: #6f6f6f;
+h2#heading {
+  font: 18px tahoma;
+  color: #2c286d;
 }
 
 form {
@@ -77,8 +75,12 @@ label {
 }
 
 label[for = "address"] {
-  position: relative;
-  top: -130px;
+  line-height: 40px;
+  vertical-align: top;
+}
+
+label[for $= "male"] {
+  display:inline;
 }
 
 input {
@@ -96,6 +98,10 @@ input[type = "radio"] {
   height: auto;
 }
 
+input[value = "female"] {
+  margin-left: 20px;
+}
+
 select {
   width: 100px;
   margin-right: 10px;
@@ -106,7 +112,7 @@ textarea {
   height: 135px;
   background-color: white;
   border: 1px solid #b9b9b9;
-  margin-bottom: 10px;
+  margin: 10px 0px;
 }
 
 input[type = "submit"] {
