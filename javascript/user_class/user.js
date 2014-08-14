@@ -13,7 +13,7 @@ function User(name, age) {
 };
 
 window.onload = function() {
-  user1 = new User("Mary", 23);
-  user2 = new User("John", 22);
+  var user1 = new User("Mary", 23);
+  var user2 = new User("John", 22);
   user1.compare(user2);
 }
