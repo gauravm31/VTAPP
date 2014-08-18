@@ -33,6 +33,7 @@ body {
   width: 28%;
   font: 13px tahoma;
   color: black;
+  line-height: 30px;
 }
 
 .blue {
@@ -80,7 +81,9 @@ label[for = "address"] {
 }
 
 label[for $= "male"] {
-  display:inline;
+  display: inline;
+  font: 13px tahoma;
+  color: #6f6f6f;
 }
 
 input {
