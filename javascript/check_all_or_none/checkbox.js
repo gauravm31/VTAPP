@@ -3,22 +3,23 @@ function Checkbox() {
 
 var checkboxes = document.getElementsByName("color");
 
-Checkbox.prototype.check = function() {
+Checkbox.prototype.check = function(mark) {
   for (var i = 0; i < checkboxes.length; i++) {
-    if(this.id === "check_all") {
-      checkboxes[i].checked = "checked";
-    } else {
-      checkboxes[i].checked = "";
-    }
+    checkboxes[i].checked = mark;
   }
   event.preventDefault();
 };
 
 Checkbox.prototype.bindEvents = function() {
+  var _this = this;
   var checkAllLink = document.getElementById('check_all');
-  checkAllLink.addEventListener("click", this.check);
+  checkAllLink.addEventListener("click", function() {
+    _this.check(true);
+  });
   var checkNoneLink = document.getElementById('check_none');
-  checkNoneLink.addEventListener("click", this.check);
+  checkNoneLink.addEventListener("click", function() {
+    _this.check(false);
+  });
 };
 
 window.onload = function() {
