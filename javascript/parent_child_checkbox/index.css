@@ -1,0 +1,12 @@
+#container {
+  height: 100px;
+  overflow: scroll; 
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
