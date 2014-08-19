@@ -1,7 +1,8 @@
 function Checkbox() {
-}
+};
 
 Checkbox.prototype.checkAll = function() {
+  event.preventDefault();
   var checkboxes = document.getElementsByName("color");
   for (var i = 0; i < checkboxes.length; i++) {
     checkboxes[i].checked = "checked";
@@ -9,6 +10,7 @@ Checkbox.prototype.checkAll = function() {
 };
 
 Checkbox.prototype.checkNone = function() {
+  event.preventDefault();
   var checkboxes = document.getElementsByName("color");
   for (var i = 0; i < checkboxes.length; i++) {
     checkboxes[i].checked = "";
@@ -16,11 +18,13 @@ Checkbox.prototype.checkNone = function() {
 };
 
 Checkbox.prototype.bindEvents = function() {
-  var check_all = document.getElementById('check_all');
-  check_all.addEventListener("click", this.checkAll);
-  var check_none = document.getElementById('check_none');
-  check_none.addEventListener("click", this.checkNone);
+  var checkAllLink = document.getElementById('check_all');
+  checkAllLink.addEventListener("click", this.checkAll);
+  var checkNoneLink = document.getElementById('check_none');
+  checkNoneLink.addEventListener("click", this.checkNone);
 };
 
-checkbox = new Checkbox();
-checkbox.bindEvents();
+window.onload = function() {
+  var checkbox = new Checkbox();
+  checkbox.bindEvents();
+};
