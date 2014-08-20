@@ -31,8 +31,8 @@ Form.prototype.validate = function() {
 }
 
 Form.prototype.bindEvents = function() {
-  var form1 = document.forms[0];
-  form1.addEventListener("submit", this.validate);
+  var form = document.forms[0];
+  form.addEventListener("submit", this.validate);
 }
 
 window.onload = function() {
