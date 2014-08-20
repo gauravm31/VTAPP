@@ -1,0 +1,44 @@
+form {
+  margin: 0px auto;
+  width: 400px;
+  background-color: #99aa99;
+  padding: 10px;
+}
+
+div.table {
+  display: table;
+}
+
+div.row {
+  display: table-row;
+}
+
+#header {
+  background-color: #228822;
+  height: 18px;
+  text-align: center;
+  width: 420px;
+  margin: 0px auto;
+}
+
+label {
+  display: table-cell;
+  width: auto;
+  padding-right: 70px;
+  padding-left: 10px;
+}
+
+textarea {
+  width: 380px;
+  height: 135px;
+  background-color: white;
+  border: 1px solid #b9b9b9;
+  margin: 7px;
+}
+
+input[type = "submit"] {
+  height: 32px;
+  background-color: #226622;
+  text-align: center;
+  margin-left: 175px;
+}
