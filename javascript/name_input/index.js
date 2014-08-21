@@ -5,13 +5,13 @@ function Name() {
 }
 
 Name.prototype.init = function() {
-  var check = this.promptForName();
+  var check = this.prompt();
   if(check) {
     this.welcome();
   }
 };
 
-Name.prototype.promptForName = function() {
+Name.prototype.prompt = function() {
   do {
     if(REGEX.test(this.firstName)) {
       this.firstName = prompt("Enter your first name.", "");
@@ -27,7 +27,7 @@ Name.prototype.promptForName = function() {
 Name.prototype.welcome = function() {
   var msg = this.firstName.trim() + ' ' + this.lastName.trim()
   alert('Hello ' + msg);
-  document.body.innerHTML = msg;
+  document.body.appendChild(document.createTextNode(msg));
 };
 
 window.onload = function() {
