@@ -1,7 +1,7 @@
 var Checkbox = {
   check: function(obj) {
-    var unorderedList = document.getElementById(obj.value);
-    var checkboxes = document.getElementsByName(obj.value);
+    var unorderedList = document.getElementById(obj.value),
+        checkboxes = document.getElementsByName(obj.value);
     if(obj.checked) {
       this.setCheckMark("visible", true, unorderedList, checkboxes);
       unorderedList.scrollIntoView(false);
@@ -15,11 +15,11 @@ var Checkbox = {
     checkboxes[i].checked = checkValue;
     }
   },
-  bindEvents: function() {
-    _this = this;
-    var list = document.getElementsByName("list");
+  bindEvents: function(list) {
+    var _this = this;
+    var unorderedList = document.getElementsByName(list);
     for(var i = 0; i < list.length; i++) {
-      list[i].addEventListener("click", function() {
+      unorderedList[i].addEventListener("click", function() {
         _this.check(this);
       });
     }
@@ -27,5 +27,5 @@ var Checkbox = {
 }
 
 window.onload = function() {
-  Checkbox.bindEvents();
+  Checkbox.bindEvents("list");
 };
