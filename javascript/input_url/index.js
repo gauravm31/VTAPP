@@ -9,7 +9,7 @@ Url.prototype.init = function() {
 };
 
 Url.prototype.promptForUrl = function() {
-  this.url = prompt("Enter the url", "")
+  this.url = prompt("Enter the url", "");
   if(BLANK.test(this.url)) {
     alert("empty URL");
   } else if(CHECK.test(this.url)) {
