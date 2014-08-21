@@ -12,7 +12,7 @@ var Checkbox = {
   setCheckMark: function(classValue, checkValue, unorderedList, checkboxes) {
     unorderedList.setAttribute("class", classValue);
     for(var i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].checked = checkValue;
+      checkboxes[i].checked = checkValue;
     }
   },
   bindEvents: function(list) {
