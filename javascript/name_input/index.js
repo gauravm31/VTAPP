@@ -1,28 +1,50 @@
 var REGEX = /^\s*$/;
 function Name() {
-  this.firstName = "";
-  this.lastName = "";
 }
 
 Name.prototype.init = function() {
-  var check = this.prompt();
+  var check = this.loop();
   if(check) {
     this.welcome();
   }
 };
 
-Name.prototype.prompt = function() {
+// Name.prototype.loop = function() {
+//   do {
+//     this.firstName = prompt("Enter your first name.", "");
+//     if(this.firstname){
+//       this.lastName = prompt("Enter your last name.", "")
+//     }
+//   } while(!(this.firstName && this.lastName))
+
+//   return (this.firstName !== null && this.lastName !== null)
+// };
+
+Name.prototype.loop = function() {
   do {
-    if(REGEX.test(this.firstName)) {
+    this.firstName = prompt("Enter your first name.", "");
+  } while(!this.firstName)
+  do {
+    this.lastName = prompt("Enter your last name.", "");
+  } while(!this.lastName)
+
+  return (this.firstName !== null && this.lastName !== null)
+
+}
+
+Name.prototype.prompt = function() {
+  if(this.validate(this.firstName)) {
       this.firstName = prompt("Enter your first name.", "");
     } else if(this.firstName === null) {
       return false;
     } else {
       this.lastName = prompt("Enter your last name.", "")
     }
-  } while(REGEX.test(this.firstName) || REGEX.test(this.lastName))
-  return (this.firstName !== null && this.lastName !== null)
-};
+}
+
+Name.prototype.validate = function(name) {
+  return(REGEX.test(name))
+}
 
 Name.prototype.welcome = function() {
   var msg = this.firstName.trim() + ' ' + this.lastName.trim()
