@@ -3,47 +3,25 @@ function Name() {
 }
 
 Name.prototype.init = function() {
-  var check = this.loop();
-  if(check) {
+  var name = this.getName();
+  if(name) {
     this.welcome();
   }
 };
 
-// Name.prototype.loop = function() {
-//   do {
-//     this.firstName = prompt("Enter your first name.", "");
-//     if(this.firstname){
-//       this.lastName = prompt("Enter your last name.", "")
-//     }
-//   } while(!(this.firstName && this.lastName))
+Name.prototype.getName = function() {
+  this.firstName = this.prompt("first");
+  this.lastName = this.prompt("last");
 
-//   return (this.firstName !== null && this.lastName !== null)
-// };
-
-Name.prototype.loop = function() {
-  do {
-    this.firstName = prompt("Enter your first name.", "");
-  } while(!this.firstName)
-  do {
-    this.lastName = prompt("Enter your last name.", "");
-  } while(!this.lastName)
-
-  return (this.firstName !== null && this.lastName !== null)
-
+  return (this.firstName && this.lastName)
 }
 
-Name.prototype.prompt = function() {
-  if(this.validate(this.firstName)) {
-      this.firstName = prompt("Enter your first name.", "");
-    } else if(this.firstName === null) {
-      return false;
-    } else {
-      this.lastName = prompt("Enter your last name.", "")
-    }
-}
-
-Name.prototype.validate = function(name) {
-  return(REGEX.test(name))
+Name.prototype.prompt = function(nameType) {  
+  var name = prompt("Enter your " + nameType + " name");
+  if(!name || REGEX.test(name)){
+    name = this.prompt(nameType);
+  }
+  return(name);
 }
 
 Name.prototype.welcome = function() {
