@@ -1,16 +1,18 @@
-var BLANK = /^\s*$/;
-var CHECK = /^https:\/\//;
 function Url() {
 }
 
+Url.prototype.BLANK = /^\s*$/;
+
+Url.prototype.CHECK = /^([a-zA-Z0-9_-~]+\.)+[a-zA-Z]+(\/[a-zA-Z0-9#-_~]*)*$/;
+
 Url.prototype.prompt = function() {
   this.url = prompt("Enter the url");
-  if(BLANK.test(this.url)) {
+  if(this.BLANK.test(this.url)) {
     alert("empty URL");
-  } else if(CHECK.test(this.url)) {
-    this.openNewWindow(this.url)
-  } else {
+  } else if(this.CHECK.test(this.url)) {
     this.openNewWindow('https://' + this.url)
+  } else {
+    alert("URL is invalid.")
   }
 };
 
