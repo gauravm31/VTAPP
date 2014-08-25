@@ -18,8 +18,6 @@ Name.prototype.welcome = function() {
     var msg = this.first.trim() + ' ' + this.last.trim()
     alert('Hello ' + msg);
     document.body.appendChild(document.createTextNode(msg));
-  } else {
-    alert("Name is invalid. Please reload the page to re-enter the name.")
   }
 };
 
