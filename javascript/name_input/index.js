@@ -1,9 +1,11 @@
 function Name() {
+  this.first = ''
+  this.last = ''
 }
 
 Name.prototype.REGEX = /^\s*$/;
 
-Name.prototype.init = function() {
+Name.prototype.checkName = function() {
   var name = this.getName();
   if(name) {
     this.welcome();
@@ -13,7 +15,6 @@ Name.prototype.init = function() {
 Name.prototype.getName = function() {
   this.first = this.prompt("first");
   this.last = this.prompt("last");
-
   return (this.first && this.last)
 }
 
@@ -33,5 +34,5 @@ Name.prototype.welcome = function() {
 
 window.onload = function() {
   var name = new Name();
-  name.init();
+  name.checkName();
 }
