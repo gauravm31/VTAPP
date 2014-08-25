@@ -1,22 +1,9 @@
 function Name() {
-  this.first = ''
-  this.last = ''
+  this.first = this.prompt("first");
+  this.last = this.prompt("last")
 }
 
 Name.prototype.REGEX = /^\s*$/;
-
-Name.prototype.checkName = function() {
-  var name = this.getName();
-  if(name) {
-    this.welcome();
-  }
-};
-
-Name.prototype.getName = function() {
-  this.first = this.prompt("first");
-  this.last = this.prompt("last");
-  return (this.first && this.last)
-}
 
 Name.prototype.prompt = function(nameType) {  
   var name = prompt("Enter your " + nameType + " name");
@@ -27,12 +14,16 @@ Name.prototype.prompt = function(nameType) {
 }
 
 Name.prototype.welcome = function() {
-  var msg = this.first.trim() + ' ' + this.last.trim()
-  alert('Hello ' + msg);
-  document.body.appendChild(document.createTextNode(msg));
+  if(this.first && this.last) {
+    var msg = this.first.trim() + ' ' + this.last.trim()
+    alert('Hello ' + msg);
+    document.body.appendChild(document.createTextNode(msg));
+  } else {
+    alert("Name is invalid. Please reload the page to re-enter the name.")
+  }
 };
 
 window.onload = function() {
   var name = new Name();
-  name.checkName();
+  name.welcome();
 }
