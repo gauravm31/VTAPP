@@ -1,38 +1,45 @@
 var EMAILCHECK = /^[a-zA-Z0-9_.]+@([a-zA-Z]+\.)+[a-zA-Z]+$/;
 var HOMEPAGECHECK = /^(http(s)?:\/\/)?([a-zA-Z0-9_-~]+\.)+[a-zA-Z]+(\/[a-zA-Z0-9#-_~]*)*$/;
 
-function Form(input, textArea, checkbox) {
-  this.inputElements = document.getElementsByTagName(input);
+function Form(inputClass, textArea, checkbox) {
+  this.inputElements = document.getElementsByClassName(inputClass);
   this.textArea = document.getElementById(textArea);
   this.checkBox = document.getElementById(checkbox);
-  this.check = false
+  this.check = true;
 };
 
-Form.prototype.validate = function() {
-  var check = true;
+Form.prototype.validateTextFields = function(email, homePage) {
   for (var i = 0, len = this.inputElements.length; i < len; i++) {
-    if(this.inputElements[i].getAttribute("type") == "text") {
-      if(this.inputElements[i].value === "") {
-        this.alertMessage(this.inputElements[i].id + " can't be empty.");
-      } else if(this.inputElements[i].id === "email" && (!EMAILCHECK.test(this.inputElements[i].value))) {
-        this.alertMessage("Email id is not valid.");
-      } else if(this.inputElements[i].id === "home_page" && (!HOMEPAGECHECK.test(this.inputElements[i].value))) {
-        this.alertMessage("Home Page is not valid.");
-      }
+    if(this.inputElements[i].value === "") {
+      this.alertMessage(this.inputElements[i].id + " can't be empty.");
+    } else if(this.checkFormat(this.inputElements[i], email, EMAILCHECK)) {
+      this.alertMessage("Email id is not valid.");
+    } else if(this.checkFormat(this.inputElements[i], homePage, HOMEPAGECHECK)) {
+      this.alertMessage("Home Page is not valid.");
     }
   }
+}
 
+Form.prototype.validateTextArea = function() {
   if(this.textArea.value.length < 50) {
     this.alertMessage("Your description about yourself is too short.");
   }
+}
 
+Form.prototype.validateCheckBox = function() {
   if(!this.checkBox.checked) {
     this.alertMessage("Please check the receive notification checkbox.");
   }
+}
 
-  if(this.check == false){
-    event.preventDefault();
+Form.prototype.checkSubmit = function() {
+  if(this.check) {
+    document.forms[0].submit();
   }
+}
+
+Form.prototype.checkFormat = function(inputElement, elementId, validFormat) {
+  return(inputElement.id === elementId && (!validFormat.test(inputElement.value)));
 }
 
 Form.prototype.alertMessage = function(msg) {
@@ -42,13 +49,17 @@ Form.prototype.alertMessage = function(msg) {
 
 Form.prototype.bindEvents = function() {
   var _this = this;
-  var form = document.forms[0];
-  form.addEventListener("submit", function() {
-    _this.validate();
+      submitButton = document.getElementById("go");
+  submitButton.addEventListener("click", function() {
+    event.preventDefault();
+    _this.validateTextFields("email", "home_page");
+    _this.validateTextArea();
+    _this.validateCheckBox();
+    _this.checkSubmit();
   });
 }
 
 window.onload = function() {
-  var form = new Form("input", "about_me", "notification");
+  var form = new Form("input_text", "about_me", "notification");
   form.bindEvents();
 };
