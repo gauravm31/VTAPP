@@ -38,6 +38,14 @@ Form.prototype.checkSubmit = function() {
   }
 }
 
+Form.prototype.isValid = function() {
+  this.check = true;
+  this.validateTextFields("email", "home_page");
+  this.validateTextArea();
+  this.validateCheckBox();
+  return(this.check);
+}
+
 Form.prototype.checkFormat = function(inputElement, elementId, validFormat) {
   return(inputElement.id === elementId && (!validFormat.test(inputElement.value)));
 }
@@ -52,10 +60,9 @@ Form.prototype.bindEvents = function() {
       submitButton = document.getElementById("go");
   submitButton.addEventListener("click", function() {
     event.preventDefault();
-    _this.validateTextFields("email", "home_page");
-    _this.validateTextArea();
-    _this.validateCheckBox();
-    _this.checkSubmit();
+    if(_this.isValid()) {
+      document.getElementById("form").submit();
+    }
   });
 }
 
