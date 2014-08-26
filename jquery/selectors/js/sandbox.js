@@ -2,8 +2,9 @@
 $("div.module").show();
 
 // three selectors i can use to get the third item in the #myList unordered list.
-// out of these the 3rd one is teh best because
-$("#myListItem").css("background-color", "red")
+// out of these the 3rd one is the best because nt-child selects all the nth elements and then applies the filter
+// while 'eq' first filters and then selects the neth-child of only that filtered result. 
+$("#myListItem").css("background-color", "red");
 $("#myList > li:nth-child(3)");
 $("#myList li:eq(2)");
 
@@ -18,3 +19,9 @@ console.log("no. of images with alt attribute: " + $("img[alt]").length);
 
 // select all odd table rows
 $("tbody > tr:odd").css("background-color", "red");
+
+$('div a').click(function({}))
+
+$('div').on('click', 'a', function(){
+
+})
