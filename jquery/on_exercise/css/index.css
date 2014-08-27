@@ -1,0 +1,17 @@
+#add {
+  float: right;
+}
+
+div.red {
+  height: 150px;
+  width: 150px;
+  background-color: red;
+  margin: 10px;
+}
+
+div.blue {
+  height: 150px;
+  width: 150px;
+  background-color: blue;
+  margin: 10px;
+}
