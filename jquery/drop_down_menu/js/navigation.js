@@ -1,15 +1,15 @@
-function Pane() {
-  this.$menuList = $("#nav");
+function Pane(list) {
+  this.$menuList = $(list);
 }
 
 Pane.prototype.showSubmenu = function() {
-  $(this).addClass("hover");
-  $(this).find("ul").show();
+  $(this).addClass("hover")
+         .find("ul").show();
 }
 
 Pane.prototype.hideSubmenu = function() {
-  $(this).removeClass("hover");
-  $(this).find("ul").hide();
+  $(this).removeClass("hover")
+         .find("ul").hide();
 }
 
 Pane.prototype.bindEvents = function() {
@@ -17,6 +17,6 @@ Pane.prototype.bindEvents = function() {
 }
 
 $(function() {
-  var pane = new Pane();
+  var pane = new Pane("#nav");
   pane.bindEvents();
 })
