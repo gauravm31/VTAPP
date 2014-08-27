@@ -18,7 +18,7 @@ Elements.prototype.createList = function() {
   })
 }
 
-Elements.prototype.handler = function(obj) {
+Elements.prototype.showRelatedModule = function(obj) {
   var div = $("div#" + $(obj).text().toLowerCase());
   this.divs.hide();
   div.show();
@@ -29,7 +29,7 @@ Elements.prototype.handler = function(obj) {
 Elements.prototype.bindEvents = function() {
   _this = this;
   this.unorderedList.on('click', 'li', function() {
-    _this.handler(this);
+    _this.showRelatedModule(this);
   })
 }
 
