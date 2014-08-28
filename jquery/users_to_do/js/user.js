@@ -14,7 +14,6 @@ User.prototype.createUser = function() {
 }
 
 User.prototype.add = function(userNumber) {
-  debugger;
   if(this.name !== '') {
     this.users.push(this.name);
     this.$createToDoButton.show();
