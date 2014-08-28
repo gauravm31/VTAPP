@@ -1,0 +1,42 @@
+#forms {
+  border-bottom: 2px solid #999999;
+  height: 60px;
+}
+
+#create_user, #create_to_do {
+  float: right;
+}
+
+.hidden {
+  display: none;
+}
+
+form {
+  float: right;
+}
+
+form * {
+  float: right;
+}
+
+#user_form {
+  clear: right;
+}
+
+#to_do {
+  margin-right: 250px;
+}
+
+#add, #create_user {
+  margin-right: 100px;
+}
+
+#display {
+  display: table;
+}
+
+.cell {
+  display: table-cell;
+  width: 700px;
+  text-align: center;
+}
