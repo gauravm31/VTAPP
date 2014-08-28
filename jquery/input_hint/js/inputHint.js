@@ -4,30 +4,40 @@ function SearchInput() {
   this.hintText = this.label.text();
 }
 
-SearchInput.prototype.toggle = function() {
-  if(event.type == "focus" && this.input.val() == this.hintText) {
-    this.input.val("").removeClass("hint");
-  } else {
-    if(!this.input.val()) {
-      this.changeInput();
-    }
+SearchInput.prototype.init = function() {
+  this.changeInput(this.hintText).addClass("hint");
+  this.label.remove();
+  this.bindEvents();
+}
+
+SearchInput.prototype.focusInput = function() {
+  if(this.input.val() == this.hintText) {
+    this.changeInput("").removeClass("hint");
   }
 }
 
-SearchInput.prototype.changeInput  = function() {
-  this.input.val(this.hintText).addClass("hint");
+SearchInput.prototype.blurInput = function() {
+  if(!this.input.val().trim()) {
+    this.changeInput(this.hintText).addClass("hint");
+  }
+}
+
+SearchInput.prototype.changeInput  = function(text) {
+  this.input.val(text);
+  return(this.input);
 }
 
 SearchInput.prototype.bindEvents = function() {
   var _this = this;
-  this.input.on("focus blur", function() {
-    _this.toggle();
+  this.input.on("focus", function() {
+    _this.focusInput();
+  })
+  this.input.on("blur", function() {
+    _this.blurInput();
   })
 }
 
 $(function() {
   var searchInput = new SearchInput();
-  searchInput.changeInput();
-  searchInput.label.remove();
-  searchInput.bindEvents();
+  searchInput.init();
 })
