@@ -1,10 +1,9 @@
 var select = {
   move: function(fromElement, toElement) {
-    for(var i = 0; i < fromElement.options.length; i++) {
-      if(fromElement.options[i].selected) {
-        fromElement.options[i].selected = false;
-        toElement.appendChild(fromElement.options[i--]);
-      }
+    var selectedElements = fromElement.selectedOptions;
+    for(var i = 0, len = fromElement.selectedOptions.length; i < len; i++) {
+      toElement.appendChild(fromElement.selectedOptions[i]);
+      toElement.selectedOptions[i--].selected = false;
     }
   },
 
