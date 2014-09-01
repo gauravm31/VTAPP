@@ -1,0 +1,41 @@
+#top {
+  border-bottom: 2px solid #999999;
+  height: 50px;
+}
+
+#save, #more {
+  float :right;
+  clear: left;
+}
+
+.hidden {
+  display: none;
+}
+
+.user_info {
+  height: 350px;
+  width: 350px;
+  float: left;
+  background-color: #aaaaaa;
+  text-align: center;
+  margin:30px;
+}
+
+p.name {
+  width:200px;
+  margin: 16px auto;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+

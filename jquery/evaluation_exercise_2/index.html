@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel = "stylesheet" type = "text/css" href = "css/index.css">
+  </head>
+  <body>
+    <div id = "top">
+      <form id = "user">
+        <input id = "name" type = "text" value = "name">
+        <input id = "email" type = "text" value = "email">
+        <input id = "phone" type = "text" value = "phone  ">
+        <input id = "save" type = "submit" value = "Save">
+      </form>
+    </div>
+    <div id = "options">
+      <span>Show: </span>
+      <select id = "max_number">
+        <option value = 3>3</option> 
+        <option value = 6>6</option>
+        <option value = 9>9</option>
+        <option value = 12>12</option>
+      </select>
+      <input type = 'button' id = "delete" value = 'delete'>
+    </div>
+    <div id = "display">
+      <input type = 'button' id = "more" class = "hidden" value = 'more'>
+    </div>
+    <script src="lib/jquery-2.1.1.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/contact_manager.js"></script>
+    <script src="js/divs.js"></script>
+  </body>
+</html>
