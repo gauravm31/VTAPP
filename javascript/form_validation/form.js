@@ -12,10 +12,13 @@ Form.prototype.validateTextFields = function(email, homePage) {
   for(var i = 0, len = this.inputElements.length; i < len; i++) {
     if(this.inputElements[i].value.trim() === "") {
       this.alertMessage(this.inputElements[i].id + " can't be empty.");
+      break;
     } else if(this.checkFormat(this.inputElements[i], email)) {
       this.alertMessage("Email id is not valid.");
+      break;
     } else if(this.checkFormat(this.inputElements[i], homePage)) {
       this.alertMessage("Home Page is not valid.");
+      break;
     }
   }
 }
@@ -33,6 +36,7 @@ Form.prototype.validateCheckBox = function() {
 }
 
 Form.prototype.checkSubmit = function() {
+  console.log(this.check)
   if(this.check) {
     document.forms[0].submit();
     alert("Form was submitted succesfully.")
@@ -50,20 +54,21 @@ Form.prototype.checkFormat = function(inputElement, elementId) {
 Form.prototype.alertMessage = function(msg) {
   alert(msg);
   this.check = false;
-  throw {
-    name: "error",
-    message: "incorrect form values."
-  }
 }
 
 Form.prototype.bindEvents = function() {
   var _this = this,
-      submitButton = document.getElementById("go");
-  submitButton.addEventListener("click", function() {
+      form = document.getElementById("user_form");
+  form.addEventListener("submit", function(event) {
     event.preventDefault();
+    _this.check = true;
     _this.validateTextFields("email", "home_page");
-    _this.validateTextArea();
-    _this.validateCheckBox();
+    if(_this.check) {
+      _this.validateTextArea();
+    }
+    if(_this.check) {
+      _this.validateCheckBox();
+    }
     _this.checkSubmit();
   });
 }
