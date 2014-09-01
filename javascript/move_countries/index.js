@@ -4,6 +4,7 @@ var select = {
     for(var i = 0, len = fromElement.selectedOptions.length; i < len; i++) {
       toElement.appendChild(fromElement.selectedOptions[i]);
       toElement.selectedOptions[i--].selected = false;
+      len--;
     }
   },
 
