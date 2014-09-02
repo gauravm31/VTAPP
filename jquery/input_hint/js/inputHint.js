@@ -1,33 +1,36 @@
-function SearchInput() {
+function InputHint() {
   this.label = $("label[for='q']");
   this.input = $("input.input_text");
   this.hintText = this.label.text();
 }
 
-SearchInput.prototype.init = function() {
-  this.changeInput(this.hintText).addClass("hint");
-  this.label.remove();
+InputHint.prototype.init = function() {
+  this.setText(this.hintText);
+  this.removeLabel();
   this.bindEvents();
 }
 
-SearchInput.prototype.focusInput = function() {
+InputHint.prototype.removeLabel = function() {
+  this.label.remove();
+}
+
+InputHint.prototype.focusInput = function() {
   if(this.input.val() == this.hintText) {
-    this.changeInput("").removeClass("hint");
+    this.input.removeClass("hint").val("");
   }
 }
 
-SearchInput.prototype.blurInput = function() {
+InputHint.prototype.blurInput = function() {
   if(!this.input.val().trim()) {
-    this.changeInput(this.hintText).addClass("hint");
+    this.setText(this.hintText)
   }
 }
 
-SearchInput.prototype.changeInput  = function(text) {
-  this.input.val(text);
-  return(this.input);
+InputHint.prototype.setText  = function(text) {
+  this.input.addClass("hint").val(text);
 }
 
-SearchInput.prototype.bindEvents = function() {
+InputHint.prototype.bindEvents = function() {
   var _this = this;
   this.input.on("focus", function() {
     _this.focusInput();
@@ -38,6 +41,6 @@ SearchInput.prototype.bindEvents = function() {
 }
 
 $(function() {
-  var searchInput = new SearchInput();
+  var searchInput = new InputHint();
   searchInput.init();
 })
