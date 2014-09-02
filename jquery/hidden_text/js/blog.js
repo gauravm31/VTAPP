@@ -3,14 +3,14 @@ function Blog() {
 }
 
 Blog.prototype.showRelatedParagraph = function(obj) {
-  var visiblePara = this.$module.find("p:visible");
+  $(obj).find("p.excerpt").slideToggle("slow");
+  var visiblePara = $(obj).siblings().find("p:visible");
   visiblePara.slideUp("slow");
-  $(obj).parent().next().slideDown("slow");
 }
 
 Blog.prototype.bindEvents = function() {
   _this = this;
-  this.$module.on("click", "a", function(event) {
+  this.$module.on("click", "li", function(event) {
     event.preventDefault();
     _this.showRelatedParagraph(this);
   })
