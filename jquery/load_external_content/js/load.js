@@ -12,7 +12,6 @@ Loader.prototype.createTargetDiv = function() {
 }
 
 Loader.prototype.start = function(event) {
-  debugger
   var id = $(this).attr('href').split("#")[1];
   $(this).parent().data('targetDiv').load('data/blog.html #' + id);
   event.preventDefault();  
