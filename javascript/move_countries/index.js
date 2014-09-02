@@ -1,11 +1,10 @@
-var select = {
+var countryMover = {
   move: function(fromElement, toElement) {
     var selectedElements = fromElement.selectedOptions;
-    for(var i = 0, len = fromElement.selectedOptions.length; i < len; i++) {
-      toElement.appendChild(fromElement.selectedOptions[i]);
-      toElement.selectedOptions[i--].selected = false;
-      len--;
-    }
+    while(selectedElements[0]) {
+      toElement.appendChild(selectedElements[0]);
+      toElement.selectedOptions[0].selected = false;
+     }
   },
 
   bindEvents: function() {
@@ -24,5 +23,5 @@ var select = {
 }
 
 window.onload = function() {
-  select.bindEvents();
+  countryMover.bindEvents();
 }
