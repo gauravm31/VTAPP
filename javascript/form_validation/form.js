@@ -1,59 +1,69 @@
 var EMAILCHECK = /^[a-zA-Z0-9_.]+@([a-zA-Z]+\.)+[a-zA-Z]+$/;
 var HOMEPAGECHECK = /^(http(s)?:\/\/)?([a-zA-Z0-9_-~]+\.)+[a-zA-Z]+(\/[a-zA-Z0-9#-_~]*)*$/;
 
-function Form(inputClass, textArea, checkbox) {
+function Form(inputClass) {
   this.inputElements = document.getElementsByClassName(inputClass);
-  this.textArea = document.getElementById(textArea);
-  this.checkBox = document.getElementById(checkbox);
-  this.check = true;
 };
 
-Form.prototype.validateTextFields = function(email, homePage) {
+Form.prototype.validateTextFields = function() {
   for(var i = 0, len = this.inputElements.length; i < len; i++) {
-    if(this.inputElements[i].value.trim() === "") {
-      this.alertMessage(this.inputElements[i].id + " can't be empty.");
-      break;
-    } else if(this.checkFormat(this.inputElements[i], email)) {
-      this.alertMessage("Email id is not valid.");
-      break;
-    } else if(this.checkFormat(this.inputElements[i], homePage)) {
-      this.alertMessage("Home Page is not valid.");
-      break;
+    switch(this.inputElements[i].id) {
+      case 'email':
+        if(this.checkFormat(EMAILCHECK, this.inputElements[i])) {
+          return;
+        }
+        break;
+      case 'home_page':
+        if(this.checkFormat(HOMEPAGECHECK, this.inputElements[i])) {
+          return; 
+        }
+        break;
+      case 'about_me': 
+        if(!this.validateTextArea(this.inputElements[i])) {
+          return;
+        }
+        break;
+      case 'notification': 
+        if(!this.validateCheckBox(this.inputElements[i])) {
+          return;
+        }
+      default: 
+        if(this.checkEmpty(this.inputElements[i])) {
+          return;
+        }
     }
   }
+  return true;
 }
 
-Form.prototype.validateTextArea = function() {
-  if(this.textArea.value.length < 50) {
-    this.alertMessage("Your description about yourself is too short.");
+Form.prototype.checkEmpty = function(textBox) {
+  if(!textBox.value.trim().length) {
+    alert(textBox.id + " can't be empty.");
+    return true;
   }
 }
 
-Form.prototype.validateCheckBox = function() {
-  if(!this.checkBox.checked) {
-    this.check = confirm("Are you sure you dont want to receive notifications?");
+Form.prototype.checkFormat = function(checkRegex, checkElement) {
+  if(!checkRegex.test(checkElement.value.trim())) {
+    alert(checkElement.id + " is not valid.");
+     return true;
   }
 }
 
-Form.prototype.checkSubmit = function() {
-  console.log(this.check)
-  if(this.check) {
-    document.forms[0].submit();
-    alert("Form was submitted succesfully.")
+Form.prototype.validateTextArea = function(textArea) {
+  if(textArea.value.trim().length < 50) {
+    alert("Your description about yourself is too short.");
+  } else {
+    return true;
   }
 }
 
-Form.prototype.checkFormat = function(inputElement, elementId) {
-  if(elementId === "email") {
-    return(inputElement.id === elementId && (!EMAILCHECK.test(inputElement.value)));
-  } else if(elementId === "home_page") {
-    return(inputElement.id === elementId && (!HOMEPAGECHECK.test(inputElement.value)));
+Form.prototype.validateCheckBox = function(checkBox) {
+  if(!checkBox.checked) {
+    var confirmResult = confirm("Are you sure you dont want to receive notifications?");
+    return confirmResult;
   }
-}
-
-Form.prototype.alertMessage = function(msg) {
-  alert(msg);
-  this.check = false;
+  return true;
 }
 
 Form.prototype.bindEvents = function() {
@@ -61,19 +71,13 @@ Form.prototype.bindEvents = function() {
       form = document.getElementById("user_form");
   form.addEventListener("submit", function(event) {
     event.preventDefault();
-    _this.check = true;
-    _this.validateTextFields("email", "home_page");
-    if(_this.check) {
-      _this.validateTextArea();
+    if(_this.validateTextFields()) {
+      this.submit();
     }
-    if(_this.check) {
-      _this.validateCheckBox();
-    }
-    _this.checkSubmit();
   });
 }
 
 window.onload = function() {
-  var form = new Form("input_text", "about_me", "notification");
+  var form = new Form("input_element");
   form.bindEvents();
 };
