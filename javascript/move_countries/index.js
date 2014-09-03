@@ -4,7 +4,7 @@ var countryMover = {
     while(selectedElements[0]) {
       toElement.appendChild(selectedElements[0]);
       toElement.selectedOptions[0].selected = false;
-     }
+    }
   },
 
   bindEvents: function() {

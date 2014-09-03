@@ -2,14 +2,13 @@ function Blog() {
   this.$module = $("div#blog");
 }
 
-Blog.prototype.showRelatedParagraph = function(obj) {
-  $(obj).find("p.excerpt").slideToggle("slow");
-  var visiblePara = $(obj).siblings().find("p:visible");
-  visiblePara.slideUp("slow");
+Blog.prototype.showRelatedParagraph = function(listItem) {
+  $(listItem).find("p.excerpt").slideToggle("slow");
+  $(listItem).siblings().find("p:visible").slideUp("slow");
 }
 
 Blog.prototype.bindEvents = function() {
-  _this = this;
+  var _this = this;
   this.$module.on("click", "li", function(event) {
     event.preventDefault();
     _this.showRelatedParagraph(this);
