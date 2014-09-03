@@ -9,23 +9,22 @@ Div.prototype.add = function() {
   this.$addButton.after(newDiv);
 }
 
-Div.prototype.highlightDiv = function(obj) {
-  
-  $(obj).addClass("blue");
-  
+Div.prototype.highlightDiv = function($obj) {
+  $("div.blue").removeClass("blue");
+  $obj.addClass("blue");
 }
 
-Div.prototype.removeDiv = function(obj) {
-  $(obj).remove();
+Div.prototype.removeDiv = function($obj) {
+  $obj.remove();
   this.divNumber--;
 }
 
-Div.prototype.checkDivNumber = function(obj) {
-  $("div.blue").removeClass("blue");
-  if($(obj).data('number') === (this.divNumber - 1)) {
-    this.removeDiv(obj);
+Div.prototype.manipulateDiv = function(obj) {
+  var $obj = $(obj)
+  if($obj.data('number') === (this.divNumber - 1)) {
+    this.removeDiv($obj);
   } else {
-    this.highlightDiv(obj);
+    this.highlightDiv($obj);
   }
 }
 
@@ -35,7 +34,7 @@ Div.prototype.bindEvents = function() {
     _this.add();
   });
   this.$body.on('click', 'div', function() {
-    _this.checkDivNumber(this);
+    _this.manipulateDiv(this);
   });
 }
 
