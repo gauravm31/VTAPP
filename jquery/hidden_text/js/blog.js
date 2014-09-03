@@ -3,7 +3,7 @@ function Blog() {
 }
 
 Blog.prototype.showRelatedParagraph = function(listItem) {
-  $listItem = $(listItem)
+  var $listItem = $(listItem)
   $listItem.find("p.excerpt").slideToggle("slow");
   $listItem.siblings().find("p:visible").slideUp("slow");
 }
