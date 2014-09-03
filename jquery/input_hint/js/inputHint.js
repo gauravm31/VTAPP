@@ -5,7 +5,7 @@ function InputHint() {
 }
 
 InputHint.prototype.init = function() {
-  this.setText(this.hintText);
+  this.setText();
   this.removeLabel();
   this.bindEvents();
 }
@@ -22,12 +22,12 @@ InputHint.prototype.focusInput = function() {
 
 InputHint.prototype.blurInput = function() {
   if(!this.input.val().trim()) {
-    this.setText(this.hintText)
+    this.setText();
   }
 }
 
-InputHint.prototype.setText  = function(text) {
-  this.input.addClass("hint").val(text);
+InputHint.prototype.setText  = function() {
+  this.input.addClass("hint").val(this.hintText);
 }
 
 InputHint.prototype.bindEvents = function() {
