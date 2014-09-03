@@ -1,44 +1,44 @@
-function Div() {
+function ContainerDiv() {
   this.$addButton = $("#add");
   this.$body = $("body");
-  this.divNumber = 1;
+  this.divNumber = 0;
 }
 
-Div.prototype.add = function() {
-  var newDiv = $("<div>" , { class: 'red', text: "Div Number: " + this.divNumber, data: { 'number': this.divNumber++ } });
+ContainerDiv.prototype.add = function() {
+  var newDiv = $("<div>" , { class: 'red', text: "Div Number: " + (++this.divNumber), data: { 'number': this.divNumber } });
   this.$addButton.after(newDiv);
 }
 
-Div.prototype.highlightDiv = function($obj) {
+ContainerDiv.prototype.highlightInnerDiv = function($obj) {
   $("div.blue").removeClass("blue");
   $obj.addClass("blue");
 }
 
-Div.prototype.removeDiv = function($obj) {
+ContainerDiv.prototype.removeInnerDiv = function($obj) {
   $obj.remove();
   this.divNumber--;
 }
 
-Div.prototype.manipulateDiv = function(obj) {
+ContainerDiv.prototype.manipulateInnerDiv = function(obj) {
   var $obj = $(obj)
-  if($obj.data('number') === (this.divNumber - 1)) {
-    this.removeDiv($obj);
+  if($obj.data('number') === (this.divNumber)) {
+    this.removeInnerDiv($obj);
   } else {
-    this.highlightDiv($obj);
+    this.highlightInnerDiv($obj);
   }
 }
 
-Div.prototype.bindEvents = function() {
+ContainerDiv.prototype.bindEvents = function() {
   var _this = this;
   this.$addButton.on('click', function() {
     _this.add();
   });
   this.$body.on('click', 'div', function() {
-    _this.manipulateDiv(this);
+    _this.manipulateInnerDiv(this);
   });
 }
 
 $(function() {
-  var div = new Div();
-  div.bindEvents();
+  var containerDiv = new ContainerDiv();
+  containerDiv.bindEvents();
 })
