@@ -3,8 +3,9 @@ function Blog() {
 }
 
 Blog.prototype.showRelatedParagraph = function(listItem) {
-  $(listItem).find("p.excerpt").slideToggle("slow");
-  $(listItem).siblings().find("p:visible").slideUp("slow");
+  $listItem = $(listItem)
+  $listItem.find("p.excerpt").slideToggle("slow");
+  $listItem.siblings().find("p:visible").slideUp("slow");
 }
 
 Blog.prototype.bindEvents = function() {
