@@ -1,21 +1,21 @@
 function Quiz() {
-  this.questionNumber = 0;
+  this.currentQuestion = 0;
   this.score = 0;
   this.questionLimit = 20;
   this.questions = [];
-  this.inputAnswers = [];
   this.$answerForm = $("#answer_form");
   this.$scoreDiv = $("#score");
   this.$questionDiv = $("#question");
-  this.$startButton = $("#start")
-  this.DigitsCheck = /^-?\d+$/;
+  this.$startButton = $("#start");
+  this.DigitsCheck = /^[+-]?\d+$/;
 }
 
 Quiz.prototype.next = function() {
-  var $inputAnswer = $("#answer").val().trim();
-  $("#answer").val("")
+  var $answer = $("#answer");
+  var $inputAnswer = $answer.val().trim();
+  $answer.val("");
   if(this.DigitsCheck.test($inputAnswer)) {
-    this.inputAnswers.push($inputAnswer);
+    this.questions[this.currentQuestion - 1].inputAnswer = $inputAnswer;
     this.checkAnswer($inputAnswer);
     this.checkLastQestion();
   } else {
@@ -24,21 +24,20 @@ Quiz.prototype.next = function() {
 }
 
 Quiz.prototype.checkAnswer = function($inputAnswer) {
-  if($inputAnswer == this.questions[this.questions.length - 1].answer) {
+  if($inputAnswer == this.questions[this.currentQuestion - 1].answer) {
+    this.questions[this.currentQuestion - 1].correctBit = 1;
     this.score++;
     this.showScore();
+  } else {
+    this.questions[this.currentQuestion - 1].correctBit = 0;
   }
 }
 
 Quiz.prototype.checkLastQestion = function() {
-  if(this.questionNumber == this.questionLimit) {
+  if(this.currentQuestion == this.questionLimit) {
     this.lastQuestionAction();
   } else {
-    var question = new Question(++this.questionNumber);
-    question.generate();
-    question.display();
-    question.setAnswer();
-    this.questions.push(question);
+    this.displayQuestion();
   }
 }
 
@@ -54,10 +53,10 @@ Quiz.prototype.showIncorrectQuestions = function() {
       incorrectQuestions = [];
 
   for(var i = 0; i < this.questionLimit; i++) {
-    if(this.inputAnswers[i] != this.questions[i].answer) {
+    if(!this.questions[i].correctBit) {
       incorrectQuestions.push($('<p>', { 'text': 'Question: ' + this.questions[i].number, class: "red" }));
       incorrectQuestions.push(this.questions[i].value);
-      incorrectQuestions.push($('<p>' , { 'text': 'Your Answer: ' + this.inputAnswers[i]}));
+      incorrectQuestions.push($('<p>' , { 'text': 'Your Answer: ' + this.questions[i].inputAnswer}));
       incorrectQuestions.push($('<p>' , { 'text': 'Correct Answer: ' + this.questions[i].answer}));
     }
   }
@@ -66,16 +65,25 @@ Quiz.prototype.showIncorrectQuestions = function() {
 }
 
 Quiz.prototype.showScore = function() {
+  var $score = $("<p>", { text: "Score: " + this.score + "/" + this.questionLimit })
   this.$scoreDiv.empty();
-  this.$scoreDiv.append("<p>Score: " + this.score + "/20</p>")
+  this.$scoreDiv.append($score)
 }
 
-Quiz.prototype.createNewQuestion = function() {
-  var question = new Question(++this.questionNumber);
-  question.generate();
-  question.display();
-  question.setAnswer();
-  this.questions.push(question);
+Quiz.prototype.createQuestions = function() {
+  for(var i = 0; i < this.questionLimit; i++) {
+    var question = new Question(this.questions.length + 1);
+    question.generate();
+    question.setAnswer();
+    this.questions.push(question);
+  }
+}
+
+Quiz.prototype.displayQuestion = function() {
+  var $questionNumberPara = $("<p>", { text: "Question: " + (++this.currentQuestion) }),
+      $questionPara = $("<p>", { text:  this.questions[this.currentQuestion - 1].value })
+  this.$questionDiv.empty();
+  this.$questionDiv.append($questionNumberPara, $questionPara);
 }
 
 Quiz.prototype.bindEvents = function() {
@@ -87,12 +95,14 @@ Quiz.prototype.bindEvents = function() {
   this.$startButton.on('click', function() {
     _this.$answerForm.show();
     _this.$scoreDiv.show();
-    _this.createNewQuestion();
+    _this.displayQuestion();
+    _this.showScore();
     $(this).remove();
   })
 }
 
 $(function() {
   var newQuiz = new Quiz();
+  newQuiz.createQuestions();
   newQuiz.bindEvents();
 })

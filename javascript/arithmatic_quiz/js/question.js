@@ -1,24 +1,23 @@
 function Question(questionNumber) {
   this.answer = null;
   this.value = '';
+  this.operandLimit = 20;
   this.number = questionNumber;
   this.operator = '';
-  this.firstOperand = null
+  this.firstOperand = null;
+  this.secondOperand = null;
   this.$questionDiv = $("#question")
+  this.correctBit = null;
+  this.inputAnswer = null;
 }
 
 Question.prototype.generate = function() {
-  this.firstOperand = Math.floor((Math.random() * 20) + 1);
-  this.secondOperand = Math.floor((Math.random() * 20) + 1);
+  this.firstOperand = Math.floor((Math.random() * this.operandLimit) + 1);
+  this.secondOperand = Math.floor((Math.random() * this.operandLimit) + 1);
   var operatorNumber = Math.floor(Math.random() * 4),
       operators = ['+', '-', '*', '/'];
   this.operator = operators[operatorNumber];
-  this.value = ("<p>" + this.firstOperand + " " + this.operator + " " + this.secondOperand + "</p>");
-}
-
-Question.prototype.display = function() {
-  this.$questionDiv.empty();
-  this.$questionDiv.append("<p>Question: " + this.number + "</p>" + this.value);
+  this.value = (this.firstOperand + " " + this.operator + " " + this.secondOperand);
 }
 
 Question.prototype.setAnswer = function() {
