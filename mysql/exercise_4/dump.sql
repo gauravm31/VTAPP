@@ -53,8 +53,9 @@ CREATE TABLE `comments` (
   `article_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `content` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `comments_user_id_index` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +64,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,1,2,'Comment 1'),(2,2,4,'Comment 2'),(3,2,2,'Comment 3'),(4,4,1,'Comment 4'),(5,2,2,'comment 5');
+INSERT INTO `comments` VALUES (1,1,2,'Comment 1'),(2,2,4,'Comment 2'),(3,2,2,'Comment 3'),(4,4,1,'Comment 4'),(5,2,2,'comment 5'),(6,4,4,'Comment 6'),(7,4,3,'Comment 7'),(8,3,4,'Comment 8');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,4 +102,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-09-09 13:05:10
+-- Dump completed on 2014-09-09 17:17:12
