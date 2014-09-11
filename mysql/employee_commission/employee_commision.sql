@@ -121,56 +121,39 @@ CREATE INDEX commissions_amount_index on commissions(amount);
 
 -- Employee who gets highest total commission
 
-SET @max_employee_commission = (
-  SELECT  SUM(amount)
+SELECT GROUP_CONCAT(employee_commissions.name) AS employee
+FROM (
+  SELECT e.name, SUM(amount) AS total_commission
   FROM employees AS e
   INNER JOIN commissions AS c
   ON e.id = c.employee_id
   GROUP BY c.employee_id
-  ORDER BY (sum(amount)) DESC
-  LIMIT 1
-);
-
-SELECT e.name
-FROM employees AS e
-INNER JOIN commissions AS c
-ON e.id = c.employee_id
-GROUP BY c.employee_id
-HAVING SUM(amount) = @max_employee_commission;
+) AS employee_commissions
+GROUP BY total_commission
+ORDER BY total_commission DESC
+LIMIT 1;
 
 -- Find employee with 4th Highest salary from employee table.
-SET @fourth_highest_salary = (
-  SELECT salary
-  FROM employees
-  GROUP BY salary
-  ORDER BY salary DESC
-  LIMIT 3, 1
-  );
 
-SELECT name
+SELECT GROUP_CONCAT(name) AS name
 FROM employees
-WHERE salary = @fourth_highest_salary;
+GROUP BY salary
+ORDER BY salary DESC
+LIMIT 3,1;
 
 -- Find department that is giving highest commission.
-SET @max_department_commission = (
-  SELECT  SUM(amount)
+SELECT GROUP_CONCAT(departments.name) AS department
+FROM departments
+INNER JOIN  (
+  SELECT e.department_id, SUM(amount) AS total_commission
   FROM employees AS e
   INNER JOIN commissions AS c
   ON e.id = c.employee_id
-  GROUP BY e.department_id
-  ORDER BY (SUM(amount)) DESC
-  LIMIT 1
-);
-
-SELECT d.name
-FROM departments AS d
-WHERE d.id = (
-  SELECT e.department_id
-  FROM employees AS e
-  INNER JOIN commissions AS c ON e.id = c.employee_id
-  GROUP BY e.department_id
-  HAVING SUM(amount) = @max_department_commission
-);
+  GROUP BY e.department_id ) AS department_commissions
+ON (departments.id = department_commissions.department_id)
+GROUP BY total_commission
+ORDER BY total_commission
+DESC LIMIT 1;
 
 --Find employees getting commission more than 3000
 SELECT GROUP_CONCAT(e.name) AS EMPLOYEES, c.amount
