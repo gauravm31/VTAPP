@@ -75,8 +75,7 @@ WHERE articles.content IN (
 SELECT articles.content AS article
 FROM articles
 LEFT JOIN comments ON (comments.article_id = articles.id)
-GROUP BY articles.content
-HAVING COUNT(comments.content) = 0;
+WHERE comments.content is NULL;
 
 ----select all articles which do not have any comments(with subqueries)
 SELECT articles.content
@@ -88,12 +87,21 @@ WHERE articles.id not IN (
 
 
 --select article which has most comments
+
+SET @max_comments = (
+  SELECT COUNT(comments.content)
+  FROM articles
+  INNER JOIN comments ON (comments.article_id = articles.id)
+  GROUP BY articles.content
+  ORDER BY COUNT(comments.content) DESC
+  LIMIT 1
+);
+
 SELECT articles.content AS article
 FROM articles
 INNER JOIN comments ON (comments.article_id = articles.id)
 GROUP BY articles.content
-ORDER BY (COUNT(comments.content)) DESC
-LIMIT 1;
+HAVING COUNT(comments.content) = @max_comments;
 
 --select article which does not have more than one comment by the same user
 SELECT articles.content AS article
