@@ -120,18 +120,48 @@ CREATE INDEX commissions_amount_index on commissions(amount);
 --Queries
 
 -- Employee who gets highest total commission
+
+SET @max_employee_commission = (
+  SELECT  SUM(amount)
+  FROM employees AS e
+  INNER JOIN commissions AS c
+  ON e.id = c.employee_id
+  GROUP BY c.employee_id
+  ORDER BY (sum(amount)) DESC
+  LIMIT 1
+);
+
 SELECT e.name
 FROM employees AS e
 INNER JOIN commissions AS c
 ON e.id = c.employee_id
 GROUP BY c.employee_id
-ORDER BY (sum(amount)) DESC
-LIMIT 1;
+HAVING SUM(amount) = @max_employee_commission;
 
 -- Find employee with 4th Highest salary from employee table.
-SELECT name FROM employees ORDER BY salary DESC LIMIT 3, 1;
+SET @fourth_highest_salary = (
+  SELECT salary
+  FROM employees
+  GROUP BY salary
+  ORDER BY salary DESC
+  LIMIT 3, 1
+  );
+
+SELECT name
+FROM employees
+WHERE salary = @fourth_highest_salary;
 
 -- Find department that is giving highest commission.
+SET @max_department_commission = (
+  SELECT  SUM(amount)
+  FROM employees AS e
+  INNER JOIN commissions AS c
+  ON e.id = c.employee_id
+  GROUP BY e.department_id
+  ORDER BY (SUM(amount)) DESC
+  LIMIT 1
+);
+
 SELECT d.name
 FROM departments AS d
 WHERE d.id = (
@@ -139,8 +169,7 @@ WHERE d.id = (
   FROM employees AS e
   INNER JOIN commissions AS c ON e.id = c.employee_id
   GROUP BY e.department_id
-  ORDER BY SUM(amount) DESC
-  LIMIT 1
+  HAVING SUM(amount) = @max_department_commission
 );
 
 --Find employees getting commission more than 3000
