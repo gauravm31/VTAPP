@@ -1,6 +1,6 @@
 function Question(questionNumber) {
   this.answer = null;
-  this.value = '';
+  this.$domValue = '';
   this.operandLimit = 20;
   this.number = questionNumber;
   this.operator = '';
@@ -17,7 +17,7 @@ Question.prototype.generate = function() {
   var operatorNumber = Math.floor(Math.random() * 4),
       operators = ['+', '-', '*', '/'];
   this.operator = operators[operatorNumber];
-  this.value = (this.firstOperand + " " + this.operator + " " + this.secondOperand);
+  this.$domValue = $("<p>", { text: this.firstOperand + " " + this.operator + " " + this.secondOperand });
 }
 
 Question.prototype.setAnswer = function() {
