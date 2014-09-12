@@ -1,14 +1,18 @@
-function Slideshow() {
-  this.$unorderedList = $("#slideshow");
+function Slideshow(slideshow_id, delay_interval) {
+  this.$unorderedList = $(slideshow_id);
   this.$listItems = this.$unorderedList.children("li");
-  this.$navigationArea = $("<div id='navigation_area'></div>")
+  this.$navigationArea = $("<div>", { id: 'navigation_area' });
+  this.$imageNumberSpan = $("<span>", { id: 'image_number'});
+  this.delay =delay_interval;
 }
 
 Slideshow.prototype.start = function(imageNumber) {
-  _this = this;
+  var _this = this
   imageNumber = this.setImageNumber(imageNumber);
   this.setNavigationAreaText(imageNumber);
-  $(_this.$listItems[imageNumber]).fadeIn("slow").delay(2000).fadeOut("slow", function() {
+  $(this.$listItems[imageNumber]).fadeIn("slow")
+                                  .delay(this.delay)
+                                  .fadeOut("slow", function() {
     _this.start(imageNumber + 1);
   });
 }
@@ -26,8 +30,7 @@ Slideshow.prototype.moveToTop = function() {
 }
 
 Slideshow.prototype.setNavigationAreaText = function(imageNumber) {
-  var newText = this.$navigationArea.text().substring(0, (this.$navigationArea.text().length - 1));
-  this.$navigationArea.text(newText + (imageNumber + 1));
+  this.$imageNumberSpan.text(imageNumber + 1);
 }
 
 Slideshow.prototype.setNavigationArea = function() {
@@ -35,12 +38,13 @@ Slideshow.prototype.setNavigationArea = function() {
     backgroundColor: "blue",
     color: "red"
   })
-  this.$navigationArea.text("No. of images: " + this.$listItems.length +" Current Image Number:  ");
+  this.$navigationArea.text("No. of images: " + this.$listItems.length + " Current Image Number:  ");
+  this.$navigationArea.append(this.$imageNumberSpan);
   this.$unorderedList.append(this.$navigationArea);
 }
 
-$(function() {
-  slideshow = new Slideshow();
+$(document).ready(function() {
+  slideshow = new Slideshow("#slideshow", 2000);
   slideshow.moveToTop();
   slideshow.setNavigationArea();
   slideshow.start(0);
