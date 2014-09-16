@@ -3,33 +3,39 @@ function Quiz() {
   this.score = 0;
   this.questionLimit = 20;
   this.questions = [];
-  this.$answerForm = $("#answer_form");
+  this.$queryForm = $("#query_form");
   this.$scoreDiv = $("#score");
   this.$questionDiv = $("#question");
   this.$startButton = $("#start");
   this.DigitsCheck = /^[+-]?\d+$/;
 }
 
-Quiz.prototype.next = function() {
+Quiz.prototype.next_question = function() {
   var $answer = $("#answer");
   var $inputAnswer = $answer.val().trim();
   $answer.val("");
   if(this.DigitsCheck.test($inputAnswer)) {
     this.questions[this.currentQuestion].inputAnswer = $inputAnswer;
-    this.checkAnswer($inputAnswer);
+    this.setCorrectBit($inputAnswer);
+    this.setScore();
     this.checkLastQestion();
   } else {
     alert("Please enter a valid number.")
   }
 }
 
-Quiz.prototype.checkAnswer = function($inputAnswer) {
+Quiz.prototype.setCorrectBit = function($inputAnswer) {
   if($inputAnswer == this.questions[this.currentQuestion].answer) {
     this.questions[this.currentQuestion].correctBit = 1;
-    this.score++;
-    this.showScore();
   } else {
     this.questions[this.currentQuestion].correctBit = 0;
+  }
+}
+
+Quiz.prototype.setScore = function() {
+  if(this.questions[this.currentQuestion].correctBit) {
+    this.score++;
+    this.showScore();
   }
 }
 
@@ -43,7 +49,7 @@ Quiz.prototype.checkLastQestion = function() {
 
 Quiz.prototype.lastQuestionAction = function() {
   this.$questionDiv.remove();
-  this.$answerForm.remove();
+  this.$queryForm.remove();
   this.showScore();
   this.showIncorrectQuestions();
 }
@@ -87,12 +93,12 @@ Quiz.prototype.displayQuestion = function() {
 
 Quiz.prototype.bindEvents = function() {
   var _this = this;
-  this.$answerForm.on('submit', function(event) {
+  this.$queryForm.on('submit', function(event) {
     event.preventDefault();
-    _this.next();
+    _this.next_question();
   })
   this.$startButton.on('click', function() {
-    _this.$answerForm.show();
+    _this.$queryForm.show();
     _this.$scoreDiv.show();
     _this.displayQuestion();
     _this.showScore();

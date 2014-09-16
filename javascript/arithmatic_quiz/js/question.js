@@ -12,12 +12,16 @@ function Question(questionNumber) {
 }
 
 Question.prototype.generate = function() {
-  this.firstOperand = Math.floor((Math.random() * this.operandLimit) + 1);
-  this.secondOperand = Math.floor((Math.random() * this.operandLimit) + 1);
+  this.firstOperand = this.generateRandomNumber();
+  this.secondOperand = this.generateRandomNumber();
   var operatorNumber = Math.floor(Math.random() * 4),
       operators = ['+', '-', '*', '/'];
   this.operator = operators[operatorNumber];
   this.$domValue = $("<p>", { text: this.firstOperand + " " + this.operator + " " + this.secondOperand });
+}
+
+Question.prototype.generateRandomNumber = function() {
+  return Math.floor((Math.random() * this.operandLimit) + 1);
 }
 
 Question.prototype.setAnswer = function() {
