@@ -5,6 +5,6 @@ class Item
   end
 
   def to_s
-    "Name: #{@name}, Quantity: #{@quantity}"
+    "Name: #{ @name }, Quantity: #{ @quantity }"
   end
 end
