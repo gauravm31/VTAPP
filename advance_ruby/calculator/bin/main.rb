@@ -1,3 +1,3 @@
 require_relative '../lib/calculator.rb'
 
-puts Operation.new.calculate 3, :+, 2
+puts Operation.calculate(3, :+, 2)
