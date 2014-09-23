@@ -1,4 +1,5 @@
 str = 'patrick'
+another_str = 'patrick'
 
 # First way to define singleton method
 def str.palindrome?
@@ -6,20 +7,16 @@ def str.palindrome?
   end
 
 p str.palindrome?
+p another_str.palindrome?
 
 # Second way to define singleton method
 class << str
   def count_occurences
     count = Hash.new(0)
-    each_char { |c| count[c] += 1 }
+    each_char { |char| count[char] += 1 }
     count
   end
 end
 
 p str.count_occurences
-
-
-# Another string with these methods not defined
-another_str = 'patrick'
-
-another_str.show_self
+p another_str.count_occurences
