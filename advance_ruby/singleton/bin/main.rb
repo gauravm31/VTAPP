@@ -3,8 +3,8 @@ another_str = 'patrick'
 
 # First way to define singleton method
 def str.palindrome?
-    reverse == self
-  end
+  reverse == self
+end
 
 p str.palindrome?
 p another_str.palindrome?
