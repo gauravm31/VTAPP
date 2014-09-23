@@ -1,14 +1,16 @@
+require_relative 'item'
+
 class ShoppingList
   def initialize
-    @list = {}
+    @list = []
   end
 
   def items(&block)
     instance_eval &block
   end
 
-  def add(item, quantity)
-    @list[item] = quantity
+  def add(name, quantity)
+    @list << Item.new(name, quantity)
   end
 
   def show
