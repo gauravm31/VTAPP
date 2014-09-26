@@ -9,6 +9,8 @@ class Play
     true
   end
 
+  validate :email, uniqueness: true
+
   def to_s
     "name => #{fname} #{lname}, age => #{age}, email => #{email}"
   end

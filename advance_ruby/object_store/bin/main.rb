@@ -11,10 +11,10 @@ p1 = Play.new
 p1.fname = "ab"
 p1.lname = "def"
 p1.age = 22
-p1.email = "ab@gmail.com"
+p1.email = "abc@gmail.com"
 p1.save
 
-puts Play.find_by_age(22) ; 
+puts Play.find_by_age(22) 
 puts Play.find_by_email("abc@gmail.com") 
 puts Play.collect
 puts Play.count
