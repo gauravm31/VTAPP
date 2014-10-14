@@ -1,24 +1,25 @@
-function ToDoList() {
+function ToDoList(toDoFormId, toDoDivId, selectBoxId, createToDoButtonId) {
   this.detail = ""
-  this.$toDoForm = $("#to_do_form");
-  this.$toDoDiv = $("#to_do_list");
-  this.Digits = /\((\d+)\)/;
+  this.$toDoForm = $(toDoFormId);
+  this.$toDoDiv = $(toDoDivId);
+  this.$assignees = $(selectBoxId);
+  this.$createToDoButton = $(createToDoButtonId);
+  this.digitsRegex = /\((\d+)\)/;
 }
 
-ToDoList.prototype.createToDo = function() {
+ToDoList.prototype.showToDoForm = function() {
   this.$toDoForm.slideDown();
 }
 
 ToDoList.prototype.save = function() {
-  var $assignees = $("#assignees")
-  var selectedOptionIndex = $assignees[0].selectedIndex,
+  var selectedOptionIndex = this.$assignees[0].selectedIndex,
       $toDoInput = $("#to_do").val().trim();
   if( $toDoInput === "") {
     alert("To-Do field can not be empty.");
   } else {
     this.detail = $toDoInput;
-    this.addCheckBoxToDiv($assignees);
-    this.changeToDoValue($assignees.val(), 'add');
+    this.addCheckBoxToDiv(this.$assignees);
+    this.changeToDoValue(this.$assignees.val(), 'add');
   }
   this.$toDoForm[0].reset();
   this.$toDoForm.slideUp();
@@ -38,7 +39,7 @@ ToDoList.prototype.changeToDoValue = function(selectedParaId, operation) {
 }
 
 ToDoList.prototype.setText = function(text, operation) {
-  var matchData = this.Digits.exec(text),
+  var matchData = this.digitsRegex.exec(text),
       toDoNumber = matchData[1],
       newText = '';
   if(operation === 'add') {
@@ -46,7 +47,7 @@ ToDoList.prototype.setText = function(text, operation) {
   } else {
     toDoNumber--;
   }
-  newText = text.replace(this.Digits, '(' + toDoNumber + ')');
+  newText = text.replace(this.digitsRegex, '(' + toDoNumber + ')');
   return(newText)
 }
 
@@ -62,10 +63,9 @@ ToDoList.prototype.checkBoxAction = function(obj) {
 }
 
 ToDoList.prototype.bindEvents = function() {
-  var _this = this,
-      $createToDoButton = $("#create_to_do");
-  $createToDoButton.on('click', function() {
-    _this.createToDo();
+  var _this = this;
+  this.$createToDoButton.on('click', function() {
+    _this.showToDoForm();
   })
   this.$toDoForm.on('submit', function(event) {
     event.preventDefault();
@@ -78,6 +78,10 @@ ToDoList.prototype.bindEvents = function() {
 }
 
 $(function() {
-  var toDoList = new ToDoList();
+  var toDoFormId = "#to_do_form",
+      toDoDivId = "#to_do_list",
+      selectBoxId = "#assignees",
+      createToDoButtonId = "#create_to_do";
+  var toDoList = new ToDoList(toDoFormId, toDoDivId, selectBoxId, createToDoButtonId);
   toDoList.bindEvents();
 })

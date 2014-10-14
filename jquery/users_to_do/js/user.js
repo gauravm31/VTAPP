@@ -1,15 +1,16 @@
-function User() {
+function User(userFormId, createToDoButtonId, nameInputId, selectBoxId, userListId, createUserButtonId) {
   this.name = '';
   this.toDo = 0;
-  this.$userForm = $("#user_form");
+  this.$userForm = $(userFormId);
   this.users = [];
-  this.$createToDoButton = $("#create_to_do");
-  this.$nameInput = $('#name');
-  this.$assignees = $("#assignees");
-  this.$userList = $("#user_list")
+  this.$createToDoButton = $(createToDoButtonId);
+  this.$nameInput = $(nameInputId);
+  this.$assignees = $(selectBoxId);
+  this.$userList = $(userListId);
+  this.$createUserButton = $(createUserButtonId)
 }
 
-User.prototype.createUser = function() {
+User.prototype.showUserForm = function() {
   this.$userForm.slideDown();
 }
 
@@ -38,22 +39,22 @@ User.prototype.addPara = function() {
 
 User.prototype.setName = function() {
   this.name = '';
-  if(this.$nameInput.val().trim() === "") {
+  var nameInput = this.$nameInput.val().trim()
+  if( nameInput === "") {
     alert("Name can not be empty.");
-  } else if(this.users.indexOf($("#name").val().trim()) != -1) {
+  } else if(this.users.indexOf(nameInput) != -1) {
     alert("This name is already taken.");
   } else {
-    this.name = this.$nameInput.val().trim();
+    this.name = nameInput;
   }
 }
 
 User.prototype.bindEvents= function() {
-  var $createUserButton = $("#create_user"),
-      userNumber = 1,
+  var userNumber = 1,
       _this = this;
 
-  $createUserButton.on('click', function() {
-    _this.createUser()
+  this.$createUserButton.on('click', function() {
+    _this.showUserForm()
   });
   
   this.$userForm.on('submit', function(event) {
@@ -65,7 +66,13 @@ User.prototype.bindEvents= function() {
 }
 
 $(function() {
-  var user = new User();
+  var userFormId = "#user_form",
+      createToDoButtonId = "#create_to_do",
+      nameInputId = "#name",
+      selectBoxId = "#assignees",
+      userListId = "#user_list",
+      createUserButtonId = "#create_user"
+  var user = new User(userFormId, createToDoButtonId, nameInputId, selectBoxId, userListId, createUserButtonId);
 
   user.bindEvents();
 })
